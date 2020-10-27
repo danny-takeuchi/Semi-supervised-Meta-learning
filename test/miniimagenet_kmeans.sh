@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This run reproduces the second-to-last line of Table 4 in the paper.
 num_clusters=500
-num_partitions=3    # more (50) partitions takes a while
+num_partitions=1    # more (50) partitions takes a while
 num_encoding_dims=256
 encoder=deepcluster
 
