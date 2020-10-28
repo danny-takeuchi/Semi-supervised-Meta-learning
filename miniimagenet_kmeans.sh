@@ -6,7 +6,7 @@ num_encoding_dims=256
 encoder=deepcluster
 
 # training
-python3 ../main.py \
+python3 main.py \
     --dataset=miniimagenet --partition_algorithm=kmeans \
     --save_checkpoints=False \
     --num_classes_train=5 --num_classes_val=5 \
@@ -21,7 +21,7 @@ python3 ../main.py \
 # testing
 for inner_update_batch_size_val in 1 5 20 50
 do
-    python3 ../main.py \
+    python3 main.py \
         --dataset=miniimagenet --partition_algorithm=kmeans \
         --save_checkpoints=False \
         --num_classes_train=5 --num_classes_val=5 \
