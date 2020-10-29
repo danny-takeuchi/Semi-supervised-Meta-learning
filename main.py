@@ -13,7 +13,7 @@ from tensorflow.python import debug as tf_debug
 from tqdm import tqdm
 import os
 import ipdb
-
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 FLAGS = flags.FLAGS
 
 ## Dataset/method options
@@ -79,6 +79,7 @@ flags.DEFINE_float('p_gtgt', 0.0, 'probability that a task is supervised miniima
 # os.environ["CUDA_VISIBLE_DEVICES"] = str(FLAGS.gpu)
 logdir = FLAGS.logdir
 print(FLAGS.p_gtgt)
+
 
 def train(model, saver, sess, exp_string, data_generator, resume_itr=0):
     SUMMARY_INTERVAL = 100
