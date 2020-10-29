@@ -164,6 +164,7 @@ def test(model, saver, sess, exp_string, data_generator, test_num_updates=None):
     print('Mean validation accuracy/loss, stddev, and confidence intervals')
     print((means, stds, ci95))
 
+
     if FLAGS.from_scratch:
         print('Mean training accuracy')
         print(np.mean(train_accuracies, 0))
