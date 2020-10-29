@@ -8,7 +8,9 @@ from collections import defaultdict
 from itertools import combinations, product
 import os
 from sklearn.cluster import KMeans
-
+from warnings import simplefilter
+# ignore all future warnings
+simplefilter(action='ignore', category=FutureWarning)
 os.environ['JOBLIB_TEMP_FOLDER'] = '/tmp'  # default runs out of space for parallel processing
 
 
