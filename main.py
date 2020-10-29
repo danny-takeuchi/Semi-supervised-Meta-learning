@@ -13,7 +13,7 @@ from tensorflow.python import debug as tf_debug
 from tqdm import tqdm
 import os
 import ipdb
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR);
 FLAGS = flags.FLAGS
 
 ## Dataset/method options
