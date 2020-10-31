@@ -9,6 +9,8 @@ from itertools import combinations, product
 import os
 from sklearn.cluster import KMeans
 from warnings import simplefilter
+from seededkmeans import *
+
 # ignore all future warnings
 simplefilter(action='ignore', category=FutureWarning)
 os.environ['JOBLIB_TEMP_FOLDER'] = '/tmp'  # default runs out of space for parallel processing
@@ -114,7 +116,8 @@ class TaskGenerator(object):
                 num_failed += 1
         return partition, num_failed
 
-    def get_partitions_kmeans(self, encodings, train):
+    # CODE HERE
+    def get_partitions_kmeans(self, encodings, train, partition_algorithm):
         if FLAGS.on_pixels: # "encodings" are images
             encodings = np.reshape(encodings, (encodings.shape[0], -1)).astype(np.float32)
             mean = np.mean(encodings, axis=1)
@@ -150,8 +153,17 @@ class TaskGenerator(object):
         for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
             for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
                 while True:
-                    kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
-                                    n_init=n_init, max_iter=3000).fit(encodings)
+                    # ---CODE HERE---
+                    if partition_algorithm == 'kmeans':
+                        kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
+                                        n_init=n_init, max_iter=3000).fit(encodings)
+                    elif partition_algorithm == 'seeded_kmeans':
+                        kmeans = SeededKmeans(n_clusters=n_clusters, init=init, precompute_distances=True,
+                                                     n_jobs=40, n_init=n_init, max_iter=3000).fit(encodings)
+                    elif partition_algorithm == 'constrained_kmeans':
+                        kmeans = None
+                    # ---
+
                     uniques, counts = np.unique(kmeans.labels_, return_counts=True)
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
                     if num_big_enough_clusters > 0.75 * n_clusters or FLAGS.on_pixels:
@@ -207,12 +219,12 @@ class TaskGenerator(object):
             for encodings in tqdm(encodings_list, desc= 'get_partitions_kmeans_encodings'):
                 while True:
                     seeded_kmeans = SeededKmeans(n_clusters = n_clusters, init=init, precompute_distances=True, n_jobs=40, n_init=n_init, max_iter=3000).fit(encodings)
-                    uniques, counts = np.unique(kmeans.labels_, return_counts = True)
+                    uniques, counts = np.unique(seeded_kmeans.labels_, return_counts = True)
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
                     if num_big_enough_clusters > 0.75* n_clusters or FLAGS.on_pixels:
                         break
                     else:
-                        tqdm.write("Too few classes ({}) with greater than {} examples.".format(num_big_enough-clusters, self.num_samples_per_class))
+                        tqdm.write("Too few classes ({}) with greater than {} examples.".format(num_big_enough_clusters, self.num_samples_per_class))
                         tqdm.write('Frequency: {}'.format(counts))
                 kmeans_list.append(seeded_kmeans)
         partitions = []
