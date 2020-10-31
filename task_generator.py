@@ -185,7 +185,7 @@ class TaskGenerator(object):
             if FLAGS.scaled_encodings:
                 n_clusters_list = [FLAGS.num_clusters]
                 for i in range(FLAGS.num_partitions -1):
-                    weight_vector = np.random.uniform(low=0.0, high = 1.0, size=encodings.shape[1]))
+                    weight_vector = np.random.uniform(low=0.0, high = 1.0, size=encodings.shape[1])
                     encodings_list.append(np.multiply(encodings, weight_vector))
 
             else:
@@ -225,7 +225,7 @@ class TaskGenerator(object):
 
 
 
-    def get_clusters=n_partition_from_labels(self, labels):
+    def get_partition_from_labels(self, labels):
         """
         Constructs a partition of the set of indices in labels, grouping indices according to their label.
         :param labels: np.array of labels, whose i-th element is the label for the i-th datapoint
