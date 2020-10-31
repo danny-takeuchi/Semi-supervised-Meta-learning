@@ -118,6 +118,16 @@ class DataGenerator(object):
                 print('Using {} hyperplanes-based partition(s) of encoding space to create classes, margin={}'.format(num_partitions, margin))
                 partitions = task_generator.get_partitions_hyperplanes(encodings=Z, num_splits=num_splits,
                                                                        margin=margin, num_partitions=num_partitions)
+
+
+            if partition_algorithm == 'seeded_kmeans':
+                if FLAGS.on_pixels:
+                    Z = np.copy(X)
+                print('USING {} k-means based partitions of ecnoding space to create classes'.format(num_partitions))
+                partitions = task_generator.get_partitions_seeded_kmeans(encodings=Z, train=train)
+
+
+
             elif partition_algorithm == 'kmeans':
                 if FLAGS.on_pixels:
                     Z = np.copy(X)
