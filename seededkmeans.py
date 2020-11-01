@@ -71,16 +71,22 @@ class SeededKmeans(object):
 
 
     def fit(self, X):
+        print("1")
         self.check_data(X)
+        print("2")
         self.check_seeds(self.seeds)
+        print("3")
         self.initialize_centroids()
+        print("4")
         # append seeds
         if self.X.size == 0:
             self.X = self.examples_
         else:
             self.X = np.vstack((self.X, self.examples_))
         # run kmeans like usual
+        print("5")
         self.run_normal_kmeans()
+        print("6")
 
     def predict(self, X):
         self.check_data(X)
