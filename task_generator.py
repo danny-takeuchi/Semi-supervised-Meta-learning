@@ -173,12 +173,15 @@ class TaskGenerator(object):
                     if partition_algorithm == 'kmeans':
                         kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
                                         n_init=n_init, max_iter=3000).fit(train_X)
+                        uniques, counts = np.unique(kmeans.labels_, return_counts=True)
                     elif partition_algorithm == 'seeded_kmeans':
                         kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
+                        uniques, counts = np.unique(kmeans.seeds[1], return_counts=True)
                     elif partition_algorithm == 'constrained_kmeans':
                         kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
+                        uniques, counts = np.unique(kmeans.seeds[1], return_counts=True)
                     # ---
-                    uniques, counts = np.unique(kmeans.labels_, return_counts=True)
+
                     print("uniques: ", uniques, "counts: ", counts)
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
                     print("num_big_enough_clusters: ", num_big_enough_clusters, "n_clusters: ", n_clusters)
