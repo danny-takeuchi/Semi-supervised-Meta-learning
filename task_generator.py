@@ -163,21 +163,21 @@ class TaskGenerator(object):
                     seeds_X = np.array(seeds_X)
                     seeds_y = np.array(seeds_y)
                     seeds = (seeds_X, seeds_y)
-                    print(seeds_y)
-                    print(max(seeds_y))
-                    print(min(seeds_y))
                 else:
                     train_X = encodings
                 while True:
-
                     if partition_algorithm == 'kmeans':
                         kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
                                         n_init=n_init, max_iter=3000).fit(train_X)
                         uniques, counts = np.unique(kmeans.labels_, return_counts=True)
                     elif partition_algorithm == 'seeded_kmeans':
+                        print("Number of clusters: ", n_clusters)
+                        n_clusters = max(seeds_y) + 1
                         kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
                         uniques, counts = np.unique(seeds_y, return_counts=True)
                     elif partition_algorithm == 'constrained_kmeans':
+                        print("Number of clusters: ", n_clusters)
+                        n_clusters = max(seeds_y) + 1
                         kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
                         uniques, counts = np.unique(seeds_y, return_counts=True)
                     # ---
