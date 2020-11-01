@@ -163,6 +163,8 @@ class TaskGenerator(object):
                     seeds_X = np.array(seeds_X)
                     seeds_y = np.array(seeds_y)
                     seeds = (seeds_X, seeds_y)
+                    print(seeds_y)
+                    print(len(seeds_y))
                 else:
                     train_X = encodings
                 while True:
