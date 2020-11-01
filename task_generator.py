@@ -151,8 +151,10 @@ class TaskGenerator(object):
 
         print('Number of encodings: {}, number of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
         kmeans_list = []
-        for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
-            for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
+        # for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
+        #     for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
+        for n_clusters in n_clusters_list:
+            for encodings in encodings_list:
                 # ---CODE HERE---
                 print("Creating Train-Seed Split.")
                 if partition_algorithm != 'kmeans':
