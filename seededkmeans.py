@@ -23,7 +23,7 @@ class SeededKmeans(object):
             idx += 1
                                                                                                                              
 
-    def run_normal_kmeans(): # run like normal after initialization of seeds
+    def run_normal_kmeans(self): # run like normal after initialization of seeds
         done = False
         iter = 0
         while not done:
