@@ -158,8 +158,7 @@ class TaskGenerator(object):
                         kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
                                         n_init=n_init, max_iter=3000).fit(encodings)
                     elif partition_algorithm == 'seeded_kmeans':
-                        kmeans = SeededKmeans(n_clusters=n_clusters, init=init, precompute_distances=True,
-                                                     n_jobs=40, n_init=n_init, max_iter=3000).fit(encodings)
+                        kmeans = SeededKmeans(n_clusters=n_clusters, max_iter=3000).fit(encodings)
                     elif partition_algorithm == 'constrained_kmeans':
                         kmeans = None
                     # ---
