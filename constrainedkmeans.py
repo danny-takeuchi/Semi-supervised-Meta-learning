@@ -31,7 +31,7 @@ class ConstrainedKmeans(SeededKmeans):
 
     def _fit(self):
         # Starts fitting
-        self._initialize_centroids()
+        self.initialize_centroids()
         if self.X.size == 0:
             # Just for the extreme case with all seeds and no data.
             self.X = self.examples_
