@@ -46,7 +46,7 @@ class SeededKmeans(object):
         
             convergence = max(self.euclidean(initial_centroids, self.centroids))
             if iter >= self.max_iter or convergence <= self.tolerance:
-                finished = True
+                done = True
                 self.assign_clusters()
 
     def assign_clusters(self): # assign closest centroid to each instance
