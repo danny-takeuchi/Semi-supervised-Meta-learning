@@ -8,6 +8,7 @@ from collections import defaultdict
 from itertools import combinations, product
 import os
 from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
 from warnings import simplefilter
 from seededkmeans import *
 from constrainedkmeans import *
@@ -118,7 +119,7 @@ class TaskGenerator(object):
         return partition, num_failed
 
     # CODE HERE
-    def get_partitions_kmeans(self, encodings, train, partition_algorithm):
+    def get_partitions_kmeans(self, encodings, labels, train, partition_algorithm):
         if FLAGS.on_pixels: # "encodings" are images
             encodings = np.reshape(encodings, (encodings.shape[0], -1)).astype(np.float32)
             mean = np.mean(encodings, axis=1)
@@ -148,8 +149,18 @@ class TaskGenerator(object):
             n_init = 10
         init = 'k-means++'
 
-        print('Number of encodings: {}, number of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
 
+        if partition_algorithm != 'kmeans':
+            train_X, seeds_X, _, seeds_y = train_test_split(encodings, labels, test_size=seed_percentage)
+            # Ensure all arrays are numpys
+            train_X = np.array(train_X)
+            seeds_X = np.array(seeds_X)
+            seeds_y = np.array(seeds_y)
+            seeds = (seeds_X, seeds_y)
+        else:
+            train_X = encodings
+
+        print('Number of encodings: {}, number of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
         kmeans_list = []
         for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
             for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
@@ -157,11 +168,11 @@ class TaskGenerator(object):
                     # ---CODE HERE---
                     if partition_algorithm == 'kmeans':
                         kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
-                                        n_init=n_init, max_iter=3000).fit(encodings)
+                                        n_init=n_init, max_iter=3000).fit(train_X)
                     elif partition_algorithm == 'seeded_kmeans':
-                        kmeans = SeededKmeans(n_clusters=n_clusters, max_iter=3000).fit(encodings)
+                        kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
                     elif partition_algorithm == 'constrained_kmeans':
-                        kmeans = ConstrainedKmeans(n_clusters=n_clusters, max_iter=3000).fit(encodings)
+                        kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
                     # ---
 
                     uniques, counts = np.unique(kmeans.labels_, return_counts=True)

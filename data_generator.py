@@ -125,7 +125,7 @@ class DataGenerator(object):
                 if FLAGS.on_pixels:
                     Z = np.copy(X)
                 print('Using {} k-means based partition(s) of encoding space to create classes'.format(num_partitions))
-                partitions = task_generator.get_partitions_kmeans(encodings=Z, train=train, partition_algorithm=partition_algorithm)
+                partitions = task_generator.get_partitions_kmeans(encodings=Z, labels = Y, train=train, partition_algorithm=partition_algorithm)
         # ---
 
         elif mode == 'randrand':
