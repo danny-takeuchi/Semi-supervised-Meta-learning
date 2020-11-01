@@ -149,24 +149,25 @@ class TaskGenerator(object):
             n_init = 10
         init = 'k-means++'
 
-
-        if partition_algorithm != 'kmeans':
-            train_X, seeds_X, _, seeds_y = train_test_split(encodings, labels, test_size=FLAGS.seed_percentage)
-            # Ensure all arrays are numpys
-            train_X = np.array(train_X)
-            seeds_X = np.array(seeds_X)
-            seeds_y = np.array(seeds_y)
-            seeds = (seeds_X, seeds_y)
-        else:
-            train_X = encodings
-
         print('Number of encodings: {}, number of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
         kmeans_list = []
         for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
             for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
+                # ---CODE HERE---
+                print("Creating Train-Seed Split.")
+                if partition_algorithm != 'kmeans':
+                    train_X, seeds_X, _, seeds_y = train_test_split(encodings, labels,
+                                                                    test_size=FLAGS.seed_percentage)
+                    # Ensure all arrays are numpys
+                    train_X = np.array(train_X)
+                    seeds_X = np.array(seeds_X)
+                    seeds_y = np.array(seeds_y)
+                    seeds = (seeds_X, seeds_y)
+                else:
+                    train_X = encodings
                 while True:
                     print("loop")
-                    # ---CODE HERE---
+
                     if partition_algorithm == 'kmeans':
                         kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
                                         n_init=n_init, max_iter=3000).fit(train_X)
