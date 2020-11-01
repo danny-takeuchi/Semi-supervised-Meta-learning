@@ -151,7 +151,7 @@ class TaskGenerator(object):
 
 
         if partition_algorithm != 'kmeans':
-            train_X, seeds_X, _, seeds_y = train_test_split(encodings, labels, test_size=seed_percentage)
+            train_X, seeds_X, _, seeds_y = train_test_split(encodings, labels, test_size=FLAGS.seed_percentage)
             # Ensure all arrays are numpys
             train_X = np.array(train_X)
             seeds_X = np.array(seeds_X)

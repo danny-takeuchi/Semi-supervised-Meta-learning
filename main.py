@@ -44,6 +44,7 @@ flags.DEFINE_integer('num_hidden_layers', 2, 'number of mlp hidden layers')
 flags.DEFINE_integer('num_parallel_calls', 8, 'for loading data')
 flags.DEFINE_integer('gpu', 7, 'CUDA_VISIBLE_DEVICES=')
 flags.DEFINE_bool('on_pixels', False, 'cluster in pixel-space')
+flags.DEFINE_bool('seed_percentage', .1, 'percent of seeds')
 
 ## Model options
 flags.DEFINE_string('norm', 'batch_norm', 'batch_norm, layer_norm, or None')
