@@ -15,7 +15,7 @@ python3 main.py \
     --num_encoding_dims=${num_encoding_dims} --encoder=${encoder} \
     --num_clusters=${num_clusters} --num_partitions=${num_partitions} \
     --logdir=./log/mnist/kmeans-acai \
-    --test_set=False --train=True --seed_percentage .1
+    --test_set=False --train=True --seed_percentage=.1
 for inner_update_batch_size_val in 1 #5 #10
 do
     python3 main.py \

@@ -165,6 +165,7 @@ class TaskGenerator(object):
         for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
             for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
                 while True:
+                    print("loop")
                     # ---CODE HERE---
                     if partition_algorithm == 'kmeans':
                         kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
@@ -174,9 +175,10 @@ class TaskGenerator(object):
                     elif partition_algorithm == 'constrained_kmeans':
                         kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
                     # ---
-
                     uniques, counts = np.unique(kmeans.labels_, return_counts=True)
+                    print("uniques: ", uniques, "counts: ", counts)
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
+                    print("num_big_enough_clusters: ", num_big_enough_clusters, "n_clusters: ", n_clusters)
                     if num_big_enough_clusters > 0.75 * n_clusters or FLAGS.on_pixels:
                         break
                     else:
