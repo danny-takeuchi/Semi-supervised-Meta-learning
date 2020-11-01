@@ -6,14 +6,14 @@ class SeededKmeans(object):
     """
     seeds: tuple of datapoints with labels
     """
-    def __init__(self, seeds=([], []), n_clusters=10, max_iter=3000, append_seeds=True, tolerance = 0.00001):
+    def __init__(self, seeds=([], []), n_clusters=10, max_iter=3000, tolerance = 0.00001):
         self.seeds = seeds
         self.K = n_clusters
         self.tolerance = tolerance
         self.max_iter = max_iter
-
+        self.centroids = None
                                      
-    def initialize(self): # initialize centroids by label
+    def initialize_centroids(self): # initialize centroids by label
         idx = 0
         self.seed_dict = {}
         temp_labels = np.array(self.labels_)
@@ -21,6 +21,18 @@ class SeededKmeans(object):
             self.seed_dict[idx] = self.examples_[np.where(self.labels_ == i)[0], :]
             temp_labels[np.where(self.labels_ == i)[0]] = idx
             idx += 1
+
+        # initialize random centroids
+        random_seeds = np.random.permutation(self.X.shape[0])[:self.K]
+        if random_seeds.size >= self.K:
+            # In the normal process
+            self.centroids = self.X[random_seeds, :]
+        else:
+            # In order to run extreme experiments with all seeds and no input datapoints
+            self.centroids = np.random.rand(self.K, self.examples_.shape[1])
+
+        for i in range(idx):
+            self.centroids[i, :] = np.mean(self.seed_dict[i], axis=0)
                                                                                                                              
 
     def run_normal_kmeans(self): # run like normal after initialization of seeds
@@ -45,7 +57,7 @@ class SeededKmeans(object):
             if i in self.cluster_assignments:
                 self.centroids[i,:] = np.mean(self.X[np.where(self.cluster_assignments == i)[0], :], axis=0)
             
-            
+
     def euclidean(self, v1, v2):
         dist = (v1 - v2)**2
         return np.sqrt(np.sum(dist, 1))
@@ -61,8 +73,13 @@ class SeededKmeans(object):
     def fit(self, X):
         self.check_data(X)
         self.check_seeds(self.seeds)
-
-        self.initialize()
+        self.initialize_centroids()
+        # append seeds
+        if self.X.size == 0:
+            self.X = self.examples_
+        else:
+            self.X = np.vstack((self.X, self.examples_))
+        # run kmeans like usual
         self.run_normal_kmeans()
 
     def predict(self, X):
