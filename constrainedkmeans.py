@@ -18,8 +18,8 @@ class ConstrainedKmeans(SeededKmeans):
         input, this variable must be set to False.
     """
 
-    def __init__(self, seed_datapoints=([], []), n_clusters=10, max_iter=100, tolerance=1e-5, verbose=False):
-        super(ConstrainedKmeans, self).__init__(seed_datapoints, n_clusters=n_clusters, max_iter=max_iter,
+    def __init__(self, seeds=([], []), n_clusters=10, max_iter=100, tolerance=1e-5, verbose=False):
+        super(ConstrainedKmeans, self).__init__(seeds, n_clusters=n_clusters, max_iter=max_iter,
                                                 tolerance=tolerance)
 
     def _assign_clusters(self):
