@@ -123,6 +123,11 @@ class DataGenerator(object):
                     Z = np.copy(X)
                 print('Using {} k-means based partition(s) of encoding space to create classes'.format(num_partitions))
                 partitions = task_generator.get_partitions_kmeans(encodings=Z, train=train)
+            elif partition_algorithm == 'hmrfkmeans':
+                if FLAGS.on_pixels:
+                    Z = np.copy(X)
+                print('Using {} hmrf k-means based partition(s) of encoding space to create classes'.format(num_partitions))
+                partitions = task_generator.get_partitions_kmeans(encodings=Z, train=train)
             else:
                 raise ValueError('Unrecognized partition-generating algorithm: either hyperplanes or kmeans')
         elif mode == 'randrand':

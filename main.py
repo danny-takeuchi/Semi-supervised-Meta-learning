@@ -167,21 +167,22 @@ def test(model, saver, sess, exp_string, data_generator, test_num_updates=None):
         print('Mean training accuracy')
         print(np.mean(train_accuracies, 0))
 
-    out_name = ''
-    if (FLAGS.partition_algorithm == 'kmeans' or FLAGS.partition_algorithm == 'kmodes') and FLAGS.mv_mode == 'encenc':
-        out_name += '_k' + str(FLAGS.num_clusters_test)
-    out_name += '_mode' + str(FLAGS.mv_mode) + '_ncv' + str(FLAGS.num_classes_val) + '_test_iubsv' + str(FLAGS.inner_update_batch_size_val) + '_test_q' + str(FLAGS.outer_update_batch_size) + '_stepsize' + str(FLAGS.update_lr) + '_iter' + str(FLAGS.metatrain_iterations)
-    out_name = logdir + '/' + exp_string + '/' + out_name[1:]
-    out_filename = out_name + '.csv'
-
-    with open(out_filename, 'w') as f:
-        writer = csv.writer(f, delimiter=',')
-        writer.writerow(['update'+str(i) for i in range(len(means))])
-        writer.writerow(means)
-        writer.writerow(stds)
-        writer.writerow(ci95)
-        if FLAGS.from_scratch:
-            writer.writerow(np.mean(train_accuracies, 0))
+    # TODO: Comment out for now
+    # out_name = ''
+    # if (FLAGS.partition_algorithm == 'kmeans' or FLAGS.partition_algorithm == 'kmodes') and FLAGS.mv_mode == 'encenc':
+    #     out_name += '_k' + str(FLAGS.num_clusters_test)
+    # out_name += '_mode' + str(FLAGS.mv_mode) + '_ncv' + str(FLAGS.num_classes_val) + '_test_iubsv' + str(FLAGS.inner_update_batch_size_val) + '_test_q' + str(FLAGS.outer_update_batch_size) + '_stepsize' + str(FLAGS.update_lr) + '_iter' + str(FLAGS.metatrain_iterations)
+    # out_name = logdir + '/' + exp_string + '/' + out_name[1:]
+    # out_filename = out_name + '.csv'
+    #
+    # with open(out_filename, 'w') as f:
+    #     writer = csv.writer(f, delimiter=',')
+    #     writer.writerow(['update'+str(i) for i in range(len(means))])
+    #     writer.writerow(means)
+    #     writer.writerow(stds)
+    #     writer.writerow(ci95)
+    #     if FLAGS.from_scratch:
+    #         writer.writerow(np.mean(train_accuracies, 0))
 
 
 def main():
