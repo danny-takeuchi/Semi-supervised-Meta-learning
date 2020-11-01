@@ -10,6 +10,7 @@ import os
 from sklearn.cluster import KMeans
 from warnings import simplefilter
 from seededkmeans import *
+from constrainedkmeans import *
 
 # ignore all future warnings
 simplefilter(action='ignore', category=FutureWarning)
@@ -160,7 +161,7 @@ class TaskGenerator(object):
                     elif partition_algorithm == 'seeded_kmeans':
                         kmeans = SeededKmeans(n_clusters=n_clusters, max_iter=3000).fit(encodings)
                     elif partition_algorithm == 'constrained_kmeans':
-                        kmeans = None
+                        kmeans = ConstrainedKmeans(n_clusters=n_clusters, max_iter=3000).fit(encodings)
                     # ---
 
                     uniques, counts = np.unique(kmeans.labels_, return_counts=True)
