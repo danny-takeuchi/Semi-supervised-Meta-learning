@@ -151,10 +151,8 @@ class TaskGenerator(object):
 
         print('Number of encodings: {}, number of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
         kmeans_list = []
-        # for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
-        #     for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
-        for n_clusters in n_clusters_list:
-            for encodings in encodings_list:
+        for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
+            for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
                 # ---CODE HERE---
                 print("Creating Train-Seed Split.")
                 if partition_algorithm != 'kmeans':
@@ -168,7 +166,6 @@ class TaskGenerator(object):
                 else:
                     train_X = encodings
                 while True:
-                    print("loop")
 
                     if partition_algorithm == 'kmeans':
                         kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
@@ -182,9 +179,7 @@ class TaskGenerator(object):
                         uniques, counts = np.unique(seeds_y, return_counts=True)
                     # ---
 
-                    print("uniques: ", uniques, "counts: ", counts)
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
-                    print("num_big_enough_clusters: ", num_big_enough_clusters, "n_clusters: ", n_clusters)
                     if num_big_enough_clusters > 0.75 * n_clusters or FLAGS.on_pixels:
                         break
                     else:
