@@ -189,7 +189,7 @@ class TaskGenerator(object):
                 kmeans_list.append(kmeans)
         partitions = []
         for kmeans in kmeans_list:
-            partition = self.get_partition_from_labels(kmeans.labels_)
+            partition = self.get_partition_from_labels(seeds_y if partition_algorithm != 'kmeans' else kmeans.labels_)
             partitions.append(partition)
         return partitions
     
