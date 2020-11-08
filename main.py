@@ -13,7 +13,7 @@ from tensorflow.python import debug as tf_debug
 from tqdm import tqdm
 import os
 import ipdb
-
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR);
 FLAGS = flags.FLAGS
 
 ## Dataset/method options
@@ -44,6 +44,7 @@ flags.DEFINE_integer('num_hidden_layers', 2, 'number of mlp hidden layers')
 flags.DEFINE_integer('num_parallel_calls', 8, 'for loading data')
 flags.DEFINE_integer('gpu', 7, 'CUDA_VISIBLE_DEVICES=')
 flags.DEFINE_bool('on_pixels', False, 'cluster in pixel-space')
+flags.DEFINE_float('seed_percentage', .1, 'percent of seeds')
 
 ## Model options
 flags.DEFINE_string('norm', 'batch_norm', 'batch_norm, layer_norm, or None')
@@ -55,7 +56,7 @@ flags.DEFINE_bool('stop_grad', False, 'if True, do not use second derivatives in
 ## Logging, saving, and testing options
 flags.DEFINE_bool('log', True, 'if false, do not log summaries, for debugging code.')
 flags.DEFINE_string('logdir', './log', 'directory for summaries and checkpoints.')
-flags.DEFINE_bool('resume', True, 'resume training if there is a model available')
+flags.DEFINE_bool('resume', False, 'resume training if there is a model available')
 flags.DEFINE_bool('train', True, 'True to train, False to test.')
 flags.DEFINE_integer('test_iter', -1, 'iteration to load model (-1 for latest model)')
 flags.DEFINE_bool('test_set', False, 'Set to true to test on the the test set, False for the validation set.')
@@ -79,6 +80,7 @@ flags.DEFINE_float('p_gtgt', 0.0, 'probability that a task is supervised miniima
 # os.environ["CUDA_VISIBLE_DEVICES"] = str(FLAGS.gpu)
 logdir = FLAGS.logdir
 print(FLAGS.p_gtgt)
+
 
 def train(model, saver, sess, exp_string, data_generator, resume_itr=0):
     SUMMARY_INTERVAL = 100

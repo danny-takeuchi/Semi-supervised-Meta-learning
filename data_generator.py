@@ -118,18 +118,16 @@ class DataGenerator(object):
                 print('Using {} hyperplanes-based partition(s) of encoding space to create classes, margin={}'.format(num_partitions, margin))
                 partitions = task_generator.get_partitions_hyperplanes(encodings=Z, num_splits=num_splits,
                                                                        margin=margin, num_partitions=num_partitions)
-            elif partition_algorithm == 'kmeans':
+
+        # ---CODE HERE---
+            else:
+                # Run K-means Algorithm
                 if FLAGS.on_pixels:
                     Z = np.copy(X)
                 print('Using {} k-means based partition(s) of encoding space to create classes'.format(num_partitions))
-                partitions = task_generator.get_partitions_kmeans(encodings=Z, train=train)
-            elif partition_algorithm == 'hmrfkmeans':
-                if FLAGS.on_pixels:
-                    Z = np.copy(X)
-                print('Using {} hmrf k-means based partition(s) of encoding space to create classes'.format(num_partitions))
-                partitions = task_generator.get_partitions_kmeans(encodings=Z, train=train)
-            else:
-                raise ValueError('Unrecognized partition-generating algorithm: either hyperplanes or kmeans')
+                partitions = task_generator.get_partitions_kmeans(encodings=Z, labels = Y, train=train, partition_algorithm=partition_algorithm)
+        # ---
+
         elif mode == 'randrand':
             print('Randomly sampled and labeled tasks')
             partitions = []

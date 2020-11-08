@@ -8,8 +8,13 @@ from collections import defaultdict
 from itertools import combinations, product
 import os
 from sklearn.cluster import KMeans
-import hmrfKmeans.djumble.semisupkmeans as ssvmeans
+from sklearn.model_selection import train_test_split
+from warnings import simplefilter
+from seededkmeans import *
+from constrainedkmeans import *
 
+# ignore all future warnings
+simplefilter(action='ignore', category=FutureWarning)
 os.environ['JOBLIB_TEMP_FOLDER'] = '/tmp'  # default runs out of space for parallel processing
 
 
@@ -113,7 +118,8 @@ class TaskGenerator(object):
                 num_failed += 1
         return partition, num_failed
 
-    def get_partitions_kmeans(self, encodings, train):
+    # CODE HERE
+    def get_partitions_kmeans(self, encodings, labels, train, partition_algorithm):
         if FLAGS.on_pixels: # "encodings" are images
             encodings = np.reshape(encodings, (encodings.shape[0], -1)).astype(np.float32)
             mean = np.mean(encodings, axis=1)
@@ -144,14 +150,38 @@ class TaskGenerator(object):
         init = 'k-means++'
 
         print('Number of encodings: {}, number of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
-
         kmeans_list = []
         for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
             for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
+                # ---CODE HERE---
+                print("Creating Train-Seed Split.")
+                if partition_algorithm != 'kmeans':
+                    train_X, seeds_X, _, seeds_y = train_test_split(encodings, labels,
+                                                                    test_size=FLAGS.seed_percentage)
+                    # Ensure all arrays are numpys
+                    train_X = np.array(train_X)
+                    seeds_X = np.array(seeds_X)
+                    seeds_y = np.array(seeds_y)
+                    seeds = (seeds_X, seeds_y)
+                else:
+                    train_X = encodings
                 while True:
-                    kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
-                                    n_init=n_init, max_iter=3000).fit(encodings)
-                    uniques, counts = np.unique(kmeans.labels_, return_counts=True)
+                    if partition_algorithm == 'kmeans':
+                        kmeans = KMeans(n_clusters=n_clusters, init=init, precompute_distances=True, n_jobs=40,
+                                        n_init=n_init, max_iter=3000).fit(train_X)
+                        uniques, counts = np.unique(kmeans.labels_, return_counts=True)
+                    elif partition_algorithm == 'seeded_kmeans':
+                        print("Number of clusters: ", n_clusters)
+                        n_clusters = max(seeds_y) + 1
+                        kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
+                        uniques, counts = np.unique(seeds_y, return_counts=True)
+                    elif partition_algorithm == 'constrained_kmeans':
+                        print("Number of clusters: ", n_clusters)
+                        n_clusters = max(seeds_y) + 1
+                        kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
+                        uniques, counts = np.unique(seeds_y, return_counts=True)
+                    # ---
+
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
                     if num_big_enough_clusters > 0.75 * n_clusters or FLAGS.on_pixels:
                         break
@@ -162,13 +192,12 @@ class TaskGenerator(object):
                 kmeans_list.append(kmeans)
         partitions = []
         for kmeans in kmeans_list:
-            partition = self.get_partition_from_labels(kmeans.labels_)
+            partition = self.get_partition_from_labels(seeds_y if partition_algorithm != 'kmeans' else kmeans.labels_)
             partitions.append(partition)
         return partitions
+    
 
-
-
-    def get_partitions_hmrfkmeans(self, encodings, train):
+    def get_partitions_seeded_kmeans(self, encodings, train):
         if FLAGS.on_pixels: # "encodings" are images
             encodings = np.reshape(encodings, (encodings.shape[0], -1)).astype(np.float32)
             mean = np.mean(encodings, axis=1)
@@ -184,49 +213,45 @@ class TaskGenerator(object):
         if train:
             if FLAGS.scaled_encodings:
                 n_clusters_list = [FLAGS.num_clusters]
-                for i in range(FLAGS.num_partitions - 1):
-                    weight_vector = np.random.uniform(low=0.0, high=1.0, size=encodings.shape[1])
+                for i in range(FLAGS.num_partitions -1):
+                    weight_vector = np.random.uniform(low=0.0, high = 1.0, size=encodings.shape[1])
                     encodings_list.append(np.multiply(encodings, weight_vector))
+
             else:
                 n_clusters_list = [FLAGS.num_clusters] * FLAGS.num_partitions
+
         else:
             n_clusters_list = [FLAGS.num_clusters_test]
         assert len(encodings_list) * len(n_clusters_list) == FLAGS.num_partitions
         if FLAGS.dataset == 'celeba' or FLAGS.num_partitions != 1 or FLAGS.on_pixels:
-            n_init = 1  # so it doesn't take forever
+            n_init = 1
         else:
             n_init = 10
         init = 'k-means++'
 
-        print('Number of encodings: {}, number of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
+        print('Number of encodings: {}, numbr of n_clusters: {}, number of inits: '.format(len(encodings_list), len(n_clusters_list)), n_init)
 
         kmeans_list = []
-        for n_clusters in tqdm(n_clusters_list, desc='get_partitions_kmeans_n_clusters'):
-            for encodings in tqdm(encodings_list, desc='get_partitions_kmeans_encodings'):
+        for n_clusters in tqdm(n_clusters_list, desc = 'get_partitions_kmeans_n_clusters'):
+            for encodings in tqdm(encodings_list, desc= 'get_partitions_kmeans_encodings'):
                 while True:
-                    # kmeans = ssvmeans.HMRFKmeansSemiSup(n_clusters=n_clusters, init=init,
-                    #                                     precompute_distances=True, n_jobs=40,
-                    #                                     n_init=n_init, max_iter=3000).fit(encodings)
-                    # TODO: How should we define must link and cannot link constraints ?
-                    hkmeans = ssvmeans.HMRFKmeansSemiSup(
-                        k_clusters, must_lnk_con_arr, cannot_lnk_con_arr, init_centroids=init_centrs_arr,
-                        ml_wg=1.0, cl_wg=1.0, max_iter=50, cvg=0.001, lrn_rate=0.03, ray_sigma=2.5, d_params=None,
-                        icm_max_i=1000, enable_norm=False
-                    )
-                    uniques, counts = np.unique(kmeans.labels_, return_counts=True)
+                    seeded_kmeans = SeededKmeans(n_clusters = n_clusters, init=init, precompute_distances=True, n_jobs=40, n_init=n_init, max_iter=3000).fit(encodings)
+                    uniques, counts = np.unique(seeded_kmeans.labels_, return_counts = True)
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
-                    if num_big_enough_clusters > 0.75 * n_clusters or FLAGS.on_pixels:
+                    if num_big_enough_clusters > 0.75* n_clusters or FLAGS.on_pixels:
                         break
                     else:
-                        tqdm.write("Too few classes ({}) with greater than {} examples.".format(num_big_enough_clusters,
-                                                                                           self.num_samples_per_class))
+                        tqdm.write("Too few classes ({}) with greater than {} examples.".format(num_big_enough_clusters, self.num_samples_per_class))
                         tqdm.write('Frequency: {}'.format(counts))
-                kmeans_list.append(kmeans)
+                kmeans_list.append(seeded_kmeans)
         partitions = []
         for kmeans in kmeans_list:
-            partition = self.get_partition_from_labels(kmeans.labels_)
+            partition = self.get_partition_from_labels(seeded_kmeans.labels_)
             partitions.append(partition)
         return partitions
+                    
+
+
 
 
     def get_partition_from_labels(self, labels):
