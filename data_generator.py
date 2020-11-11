@@ -118,8 +118,18 @@ class DataGenerator(object):
                 print('Using {} hyperplanes-based partition(s) of encoding space to create classes, margin={}'.format(num_partitions, margin))
                 partitions = task_generator.get_partitions_hyperplanes(encodings=Z, num_splits=num_splits,
                                                                        margin=margin, num_partitions=num_partitions)
+            # ---CODE HERE---
+            elif partition_algorithm == 'ss_tasks':
+                partition_algorithm_tmp = 'kmeans'
+                if FLAGS.on_pixels:
+                    Z = np.copy(X)
+                print('Using {} k-means based partition(s) and labeled data of encoding space to create classes'.format(num_partitions))
+                partitions, partitions_from_lbls = task_generator.get_partitions_kmeans(encodings=Z, labels = Y,
+                                                                                        train=train,
+                                                                                        partition_algorithm=partition_algorithm_tmp,
+                                                                                        is_sstasks = True)
+                print(f'Partition from labels: {len(partitions_from_lbls)}')
 
-        # ---CODE HERE---
             else:
                 # Run K-means Algorithm
                 if FLAGS.on_pixels:
@@ -159,8 +169,21 @@ class DataGenerator(object):
             labels = tf.concat((task['train_labels'], task['test_labels']), axis=0)
             return features, labels
 
-        tasks = task_generator.get_tasks(num_tasks=num_tasks, partitions=partitions)
-        train_ind, train_labels, test_ind, test_labels = [task[0] for task in tasks], [task[1] for task in tasks], [task[2] for task in tasks], [task[3] for task in tasks]
+        if partition_algorithm == 'ss_tasks':
+            try:
+                print(f'Partition from labels: {len(partitions_from_lbls)}')
+                tasks = task_generator.get_tasks(num_tasks=num_tasks, partitions=partitions,
+                                                 partition_algorithm = partition_algorithm, labels = Y,
+                                                 labeled_partitions = partitions_from_lbls)
+                train_ind, train_labels, test_ind, test_labels = [task[0] for task in tasks], [task[1] for task in tasks], [task[2] for task in tasks], [task[3] for task in tasks]
+            except:
+                print(f'Partition from kmeans: {len(partitions)}')
+
+                tasks = task_generator.get_tasks(num_tasks=num_tasks, partitions=partitions)
+                train_ind, train_labels, test_ind, test_labels = [task[0] for task in tasks], [task[1] for task in tasks], [task[2] for task in tasks], [ task[3] for task in tasks]
+        else:
+            tasks = task_generator.get_tasks(num_tasks=num_tasks, partitions=partitions)
+            train_ind, train_labels, test_ind, test_labels = [task[0] for task in tasks], [task[1] for task in tasks], [task[2] for task in tasks], [task[3] for task in tasks]
 
         dataset = tf.data.Dataset.from_tensor_slices(
             {"train_indices": train_ind, "train_labels": train_labels, "test_indices": test_ind, "test_labels": test_labels})

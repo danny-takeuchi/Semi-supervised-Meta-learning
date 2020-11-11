@@ -40,15 +40,30 @@ class TaskGenerator(object):
             test_labels.extend([label for i in range(self.num_samples_per_class - self.num_train_samples_per_class)])
         return train_indices, train_labels, test_indices, test_labels
 
-    def get_tasks(self, num_tasks, partitions):
+
+    def get_tasks(self, num_tasks, partitions, partition_algorithm = None,
+                  labels = None, default_task_param = 5, labeled_partitions = None):
         tasks = []
-        for i_task in tqdm(range(num_tasks), desc='get_tasks'):
-            if num_tasks == len(partitions):
-                i_partition = i_task
-            else:
-                i_partition = random.sample(range(len(partitions)), 1)[0]
-            task = self.get_task(partition=partitions[i_partition])
-            tasks.append(task)
+        if partition_algorithm != 'ss_tasks':
+            for i_task in tqdm(range(num_tasks), desc='get_tasks'):
+                if num_tasks == len(partitions):
+                    i_partition = i_task
+                else:
+                    i_partition = random.sample(range(len(partitions)), 1)[0]
+                task = self.get_task(partition=partitions[i_partition])
+                tasks.append(task)
+        elif partition_algorithm == 'ss_tasks':
+            for i_task in tqdm(range(num_tasks), desc='get_tasks'):
+                if num_tasks == len(partitions):
+                    i_partition = i_task
+                else:
+                    i_partition = random.sample(range(len(partitions)), 1)[0]
+                if i_task % default_task_param == 0:
+                    task = self.get_task(partition = labeled_partitions[i_partition])
+                else:
+                    task = self.get_task(partition=partitions[i_partition])
+                tasks.append(task)
+
         return tasks
 
     def get_splits_hyperplanes(self, encodings, num_splits, margin):
@@ -119,7 +134,7 @@ class TaskGenerator(object):
         return partition, num_failed
 
     # CODE HERE
-    def get_partitions_kmeans(self, encodings, labels, train, partition_algorithm):
+    def get_partitions_kmeans(self, encodings, labels, train, partition_algorithm, is_sstasks = False):
         if FLAGS.on_pixels: # "encodings" are images
             encodings = np.reshape(encodings, (encodings.shape[0], -1)).astype(np.float32)
             mean = np.mean(encodings, axis=1)
@@ -191,9 +206,19 @@ class TaskGenerator(object):
                         tqdm.write('Frequency: {}'.format(counts))
                 kmeans_list.append(kmeans)
         partitions = []
+        partitions_from_labels = []
         for kmeans in kmeans_list:
-            partition = self.get_partition_from_labels(seeds_y if partition_algorithm != 'kmeans' else kmeans.labels_)
-            partitions.append(partition)
+            if is_sstasks:
+                partition = self.get_partition_from_labels(seeds_y if partition_algorithm != 'kmeans' else kmeans.labels_)
+                partitions.append(partition)
+                partition_lbl = self.get_partition_from_labels(labels)
+                partitions_from_labels.append(partition_lbl)
+            else:
+                partition = self.get_partition_from_labels(seeds_y if partition_algorithm != 'kmeans' else kmeans.labels_)
+                partitions.append(partition)
+        if is_sstasks:
+            print(f'{print(len(partitions))} , {len(partitions_from_labels)}')
+            return partitions, partitions_from_labels
         return partitions
     
 

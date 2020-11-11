@@ -6,7 +6,7 @@ num_encoding_dims=256
 encoder=acai
 
 python3 main.py \
-    --dataset=mnist --partition_algorithm=constrained_kmeans \
+    --dataset=mnist --partition_algorithm=kmeans \
     --save_checkpoints=False \
     --num_classes_train=10 --num_classes_val=10 \
     --inner_update_batch_size_train=1 --inner_update_batch_size_val=5 --outer_update_batch_size=10 \
@@ -19,7 +19,7 @@ python3 main.py \
 for inner_update_batch_size_val in 1 #5 #10
 do
     python3 main.py \
-        --dataset=mnist --partition_algorithm=seeded_kmeans \
+        --dataset=mnist --partition_algorithm=kmeans \
         --save_checkpoints=False \
         --num_classes_train=10 --num_classes_val=10 \
         --inner_update_batch_size_train=1 --inner_update_batch_size_val=${inner_update_batch_size_val} --outer_update_batch_size=10  \
