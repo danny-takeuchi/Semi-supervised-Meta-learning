@@ -191,14 +191,15 @@ class TaskGenerator(object):
                         n_clusters = max(seeds_y) + 1
                         kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000)
                         kmeans.fit(train_X)
-                        uniques, counts = np.unique(seeds_y, return_counts=True)
-                        print("kmeans.cluster_assignments", kmeans.cluster_assignments)
-                        print("kmeans.predict", kmeans.predict(encodings), "predict len: ", len(kmeans.predict(encodings)))
+                        uniques, counts = np.unique(kmeans.predict(encodings), return_counts=True)
+                        # print("kmeans.cluster_assignments", kmeans.cluster_assignments)
+                        # print("kmeans.predict", kmeans.predict(encodings), "predict len: ", len(kmeans.predict(encodings)))
                     elif partition_algorithm == 'constrained_kmeans':
                         print("Number of clusters: ", n_clusters)
                         n_clusters = max(seeds_y) + 1
-                        kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
-                        uniques, counts = np.unique(seeds_y, return_counts=True)
+                        kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000)
+                        kmeans.fit(train_X)
+                        uniques, counts = np.unique(kmeans.predict(encodings), return_counts=True)
                     # ---
 
                     num_big_enough_clusters = np.sum(counts > self.num_samples_per_class)
@@ -213,12 +214,12 @@ class TaskGenerator(object):
         partitions_from_labels = []
         for kmeans in kmeans_list:
             if is_sstasks:
-                partition = self.get_partition_from_labels(kmeans.predict(train_X) if partition_algorithm != 'kmeans' else kmeans.labels_)
+                partition = self.get_partition_from_labels(kmeans.predict(encodings) if partition_algorithm != 'kmeans' else kmeans.labels_)
                 partitions.append(partition)
                 partition_lbl = self.get_partition_from_labels(labels)
                 partitions_from_labels.append(partition_lbl)
             else:
-                partition = self.get_partition_from_labels(kmeans.predict(train_X) if partition_algorithm != 'kmeans' else kmeans.labels_)
+                partition = self.get_partition_from_labels(kmeans.predict(encodings) if partition_algorithm != 'kmeans' else kmeans.labels_)
                 partitions.append(partition)
         if is_sstasks:
             print(f'{print(len(partitions))} , {len(partitions_from_labels)}')
