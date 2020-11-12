@@ -190,6 +190,7 @@ class TaskGenerator(object):
                         print("Number of clusters: ", n_clusters)
                         n_clusters = max(seeds_y) + 1
                         kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000)
+                        kmeans.fit(train_X)
                         uniques, counts = np.unique(kmeans.predict(encodings), return_counts=True)
                         # print("kmeans.cluster_assignments", kmeans.cluster_assignments)
                         # print("kmeans.predict", kmeans.predict(encodings), "predict len: ", len(kmeans.predict(encodings)))
@@ -197,6 +198,7 @@ class TaskGenerator(object):
                         print("Number of clusters: ", n_clusters)
                         n_clusters = max(seeds_y) + 1
                         kmeans = ConstrainedKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000)
+                        kmeans.fit(train_X)
                         uniques, counts = np.unique(kmeans.predict(encodings), return_counts=True)
                     # ---
 
@@ -211,8 +213,6 @@ class TaskGenerator(object):
         partitions = []
         partitions_from_labels = []
         for kmeans in kmeans_list:
-            if partition_algorithm != 'kmeans':
-                kmeans.fit(train_X)
             if is_sstasks:
                 partition = self.get_partition_from_labels(kmeans.predict(encodings) if partition_algorithm != 'kmeans' else kmeans.labels_)
                 partitions.append(partition)
