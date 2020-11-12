@@ -189,9 +189,10 @@ class TaskGenerator(object):
                     elif partition_algorithm == 'seeded_kmeans':
                         print("Number of clusters: ", n_clusters)
                         n_clusters = max(seeds_y) + 1
-                        kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000).fit(train_X)
+                        kmeans = SeededKmeans(seeds= seeds, n_clusters=n_clusters, max_iter=3000)
+                        kmeans.fit(train_X)
                         uniques, counts = np.unique(seeds_y, return_counts=True)
-                        # print("kmeans.cluster_assignments", kmeans.cluster_assignments)
+                        print("kmeans.cluster_assignments", kmeans.cluster_assignments)
                         print("kmeans.predict", kmeans.predict(train_X), "predict len: ", len(kmeans.predict(train_X)))
                     elif partition_algorithm == 'constrained_kmeans':
                         print("Number of clusters: ", n_clusters)
