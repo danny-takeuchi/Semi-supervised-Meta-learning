@@ -1,9 +1,0 @@
-.idea/*
-venv
-*.pyc
-data/*
-**/logs/*
-**/saved_models/*
-local_settings.py
-*.h5
-*.pdf
