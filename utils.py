@@ -4,7 +4,8 @@ import os
 import random
 import tensorflow as tf
 
-from tensorflow.contrib.layers.python import layers as tf_layers
+# from tensorflow.contrib.layers.python import layers as tf_layers
+import tensorflow.keras.layers as tf_layers
 from tensorflow.python.platform import flags
 from collections import defaultdict
 FLAGS = flags.FLAGS
