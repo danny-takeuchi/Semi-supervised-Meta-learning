@@ -124,7 +124,7 @@ class SSVAE(keras.Model):
         return self.decoder(item)
 
     def duplicate(self, x, y_dim):
-        return tf.tile(x, tuple(x.shape.as_list()), multiples = y_dim)
+        return tf.tile(x, tuple(x.shape.as_list()), multiples=y_dim)
 
     def sample_gaussian(self, m, v):
         eps = tf.random.normal(m)
@@ -137,7 +137,7 @@ class SSVAE(keras.Model):
         return kl
 
     def kl_normal(self, qm, qv, pm, pv):
-        element_wise = 0.5 * (tf.log(pv) - tf.log(qv) + qv / pv + tf.pow((qm - pm), 2) / pv - 1)
+        element_wise = 0.5 * (tf.math.log(pv) - tf.math.log(qv) + qv / pv + tf.pow((qm - pm), 2) / pv - 1)
         kl = tf.reduce_sum(element_wise, axis=-1)  # element_wise.sum(-1)
         return kl
 
@@ -163,7 +163,7 @@ class SSVAE(keras.Model):
 
         y = np.repeat(np.arange(self.y_dim), inputs.size(0))
         inp = np.eye(self.y_dim)[y]
-        y = tf.tensor(inp)
+        y = tf.convert_to_tensor(inp)
 
         x = self.duplicate(inp, self.y_dim)
         input = tf.concat
