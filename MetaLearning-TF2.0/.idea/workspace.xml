@@ -4,9 +4,12 @@
     <list default="true" id="21ce7852-c913-48c2-ba1a-0ba389e8b6be" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/processed/test.pt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/processed/training.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/t10k-images-idx3-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/t10k-images-idx3-ubyte.gz" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/t10k-labels-idx1-ubyte" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/t10k-labels-idx1-ubyte.gz" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/train-images-idx3-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/train-images-idx3-ubyte.gz" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/train-labels-idx1-ubyte" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ss_vae_pytorch/data/MNIST/raw/train-labels-idx1-ubyte.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.gitmodules" beforeDir="false" />
