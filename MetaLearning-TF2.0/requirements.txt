@@ -1,0 +1,14 @@
+tensorflow-gpu
+tfa-nightly
+mock
+tqdm
+numpy
+miniimagenettools
+pandas
+tensorflow_hub
+scikit-learn
+#  Just for plots and graphs
+matplotlib
+seaborn
+# for face recognition
+# face_recognition
