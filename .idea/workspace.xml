@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a8e0bd3-2d6b-483b-89a9-f1ca64a391f2" name="Default Changelist" comment="add ss_vae and lasium">
-      <change afterPath="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/maml_ss_vae_omniglot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/ssvae.py" afterDir="false" />
+    <list default="true" id="1a8e0bd3-2d6b-483b-89a9-f1ca64a391f2" name="Default Changelist" comment="modified files of ss_vae">
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/.idea/ss_vae_pytorch.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MetaLearning-TF2.0" beforeDir="false" afterPath="$PROJECT_DIR$/MetaLearning-TF2.0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MetaLearning-TF2.0/databases/maml_benchmarks.py" beforeDir="false" afterPath="$PROJECT_DIR$/MetaLearning-TF2.0/databases/maml_benchmarks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/maml_vae_omniglot.py" beforeDir="false" afterPath="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/maml_vae_omniglot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/vae.py" beforeDir="false" afterPath="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/vae.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ss_vae_pytorch/codebase/models/ssvae.py" beforeDir="false" afterPath="$PROJECT_DIR$/ss_vae_pytorch/codebase/models/ssvae.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +26,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="vae_ss" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/MetaLearning-TF2.0" />
@@ -57,6 +50,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -128,7 +122,7 @@
       <workItem from="1605303600117" duration="4465000" />
       <workItem from="1605323128450" duration="1181000" />
       <workItem from="1605395565769" duration="1113000" />
-      <workItem from="1605473103662" duration="2012000" />
+      <workItem from="1605473103662" duration="2289000" />
     </task>
     <task id="LOCAL-00001" summary="original pull">
       <created>1603925943507</created>
@@ -221,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605323516587</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="modified files of ss_vae">
+      <created>1605494893441</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1605494893441</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +233,8 @@
     <MESSAGE value="updated hmrf kmeans" />
     <MESSAGE value="semi supervised at task level with small amount of labelled tasks" />
     <MESSAGE value="add ss_vae and lasium" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ss_vae and lasium" />
+    <MESSAGE value="modified files of ss_vae" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified files of ss_vae" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="358" key="#Deployment" timestamp="1604891999106">
@@ -247,10 +249,10 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="744" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1604183492104" />
-    <state x="476" y="170" key="CommitChangelistDialog2" timestamp="1605323823679">
+    <state x="476" y="170" key="CommitChangelistDialog2" timestamp="1605495142086">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="476" y="170" key="CommitChangelistDialog2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605323823679" />
+    <state x="476" y="170" key="CommitChangelistDialog2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605495142086" />
     <state x="333" y="136" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1603925943141" />
     <state x="256" y="146" key="DiffContextDialog" timestamp="1605144476703">
       <screen x="0" y="23" width="2560" height="1340" />
@@ -305,10 +307,10 @@
     </state>
     <state x="746" y="331" key="VCS.ChangeListViewerDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605323449851" />
     <state x="522" y="259" key="VCS.ChangeListViewerDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1603925913836" />
-    <state x="1413" y="395" key="Vcs.Push.Dialog.v2" timestamp="1605323837800">
+    <state x="1413" y="395" key="Vcs.Push.Dialog.v2" timestamp="1605495049758">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="1413" y="395" key="Vcs.Push.Dialog.v2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605323837800" />
+    <state x="1413" y="395" key="Vcs.Push.Dialog.v2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605495049758" />
     <state x="1380" y="123" width="1080" height="1140" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605323097039">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
