@@ -126,6 +126,25 @@ class SSVAE(keras.Model):
     def duplicate(self, x, y_dim):
         return tf.tile(x, tuple(x.shape.as_list()), multiples = y_dim)
 
+    def sample_gaussian(self, m, v):
+        eps = tf.random.normal(m)
+        z = m + eps * tf.sqrt(v)
+        return z
+
+    def kl_cat(self, log_q, log_p):
+        element_wise = (q * (log_q - log_p))
+        kl = tf.reduce_sum(element_wise, axis=-1)
+        return kl
+
+    def kl_normal(self, qm, qv, pm, pv):
+        element_wise = 0.5 * (tf.log(pv) - tf.log(qv) + qv / pv + tf.pow((qm - pm), 2) / pv - 1)
+        kl = tf.reduce_sum(element_wise, axis=-1)  # element_wise.sum(-1)
+        return kl
+
+    def log_bernoulli_with_logits(self, x, logits):
+        log_prob = tf.nn.sigmoid_cross_entropy_with_logits(labels=x, logits=logits)
+        return log_prob
+
     def call(self, inputs, training=None, mask=None):
         # z_mean, z_log_var = self.encoder(inputs)
         # z = self.sampler([z_mean, z_log_var])
@@ -139,8 +158,8 @@ class SSVAE(keras.Model):
         # kl_loss *= -0.5
         # total_loss = reconstruction_loss + kl_loss # nelbo
         y_logits = self.classifier(inputs)
-        y_logprob = tf.nn.log_softmax(y_logits, axis = 1)
-        y_prob = tf.nn.softmax(y_logits, dim = 1)
+        y_logprob = tf.nn.log_softmax(y_logits, axis=)
+        y_prob = tf.nn.softmax(y_logits, dim=1)
 
         y = np.repeat(np.arange(self.y_dim), inputs.size(0))
         inp = np.eye(self.y_dim)[y]
@@ -148,8 +167,30 @@ class SSVAE(keras.Model):
 
         x = self.duplicate(inp, self.y_dim)
         input = tf.concat
-        mu, var = self.encoder()
+        mu, var = self.encoder()  # x, y
+        z = self.sample_gaussian(mu, var)
+        decoder_out = self.decoder()  # z, y
 
+        kl_y = self.kl_cat(y_prob, y_logprob, np.log(1.0/self.y_dim))
+        kl_z = self.kl_normal(mu, var, self.z_prior_m, self.z_prior_v)         # z_prior_m, z_prior_v?
+        rec = -1 * self.log_bernoulli_with_logits(x, decoder_out)
+
+        kl_z = tf.transpose(y_prob, (0, 1)) * kl_z.reshape(self.y_dim, -1)     # y_prob.transpose(0, 1) * kl_z.view(self.y_dim, -1)
+        kl_z = tf.reduce_sum(kl_z, axis=0)          # kl_z.sum(dim=0)
+
+        rec = tf.transpose(y_prob, (0, 1)) * rec.reshape(self.y_dim, -1)
+        rec = tf.reduce_sum(rec, axis=0)
+
+        nelbo = kl_y + kl_z + rec
+        nelbo = tf.reduce_mean(nelbo)               # nelbo.mean()
+
+        kl_y = tf.reduce_mean(kl_y)
+        kl_z = tf.reduce_mean(kl_z)
+        rec = tf.reduce_mean(rec)
+
+        reconstruction_loss = rec
+        kl_loss = kl_y + kl_z
+        total_loss = nelbo
 
 
         return {
