@@ -131,7 +131,7 @@ class SSVAE(keras.Model):
         z = m + eps * tf.sqrt(v)
         return z
 
-    def kl_cat(self, log_q, log_p):
+    def kl_cat(self, q, log_q, log_p):
         element_wise = (q * (log_q - log_p))
         kl = tf.reduce_sum(element_wise, axis=-1)
         return kl
@@ -158,7 +158,7 @@ class SSVAE(keras.Model):
         # kl_loss *= -0.5
         # total_loss = reconstruction_loss + kl_loss # nelbo
         y_logits = self.classifier(inputs)
-        y_logprob = tf.nn.log_softmax(y_logits, axis=)
+        y_logprob = tf.nn.log_softmax(y_logits, axis=1)
         y_prob = tf.nn.softmax(y_logits, dim=1)
 
         y = np.repeat(np.arange(self.y_dim), inputs.size(0))
