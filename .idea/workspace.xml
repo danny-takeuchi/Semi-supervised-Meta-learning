@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a8e0bd3-2d6b-483b-89a9-f1ca64a391f2" name="Default Changelist" comment="modified files of ss_vae">
-      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/.idea/ss_vae_pytorch.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/processed/test.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/processed/training.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/t10k-images-idx3-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/t10k-images-idx3-ubyte.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/t10k-labels-idx1-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/t10k-labels-idx1-ubyte.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/train-images-idx3-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/train-images-idx3-ubyte.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/train-labels-idx1-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ss_vae_pytorch/data/MNIST/raw/train-labels-idx1-ubyte.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +39,7 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/MetaLearning-TF2.0" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
@@ -59,7 +69,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -103,7 +113,7 @@
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -122,7 +132,8 @@
       <workItem from="1605303600117" duration="4465000" />
       <workItem from="1605323128450" duration="1181000" />
       <workItem from="1605395565769" duration="1113000" />
-      <workItem from="1605473103662" duration="2289000" />
+      <workItem from="1605473103662" duration="4163000" />
+      <workItem from="1605497474787" duration="1135000" />
     </task>
     <task id="LOCAL-00001" summary="original pull">
       <created>1603925943507</created>
@@ -222,13 +233,32 @@
       <option name="project" value="LOCAL" />
       <updated>1605494893441</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="modified files of ss_vae">
+      <created>1605495217918</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1605495217918</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
     <MESSAGE value="original pull" />
     <MESSAGE value="updated hmrf kmeans" />
     <MESSAGE value="semi supervised at task level with small amount of labelled tasks" />
@@ -249,10 +279,10 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="744" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1604183492104" />
-    <state x="476" y="170" key="CommitChangelistDialog2" timestamp="1605495142086">
+    <state x="476" y="170" key="CommitChangelistDialog2" timestamp="1605497901055">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="476" y="170" key="CommitChangelistDialog2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605495142086" />
+    <state x="476" y="170" key="CommitChangelistDialog2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605497901055" />
     <state x="333" y="136" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1603925943141" />
     <state x="256" y="146" key="DiffContextDialog" timestamp="1605144476703">
       <screen x="0" y="23" width="2560" height="1340" />
@@ -298,19 +328,19 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="635" y="287" key="RollbackChangesDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605144614441" />
-    <state x="789" y="332" width="1471" height="765" key="SettingsEditor" timestamp="1605483501339">
+    <state x="789" y="332" width="1471" height="765" key="SettingsEditor" timestamp="1605497660421">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="789" y="332" width="1471" height="765" key="SettingsEditor/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605483501339" />
+    <state x="789" y="332" width="1471" height="765" key="SettingsEditor/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605497660421" />
     <state x="746" y="331" key="VCS.ChangeListViewerDialog" timestamp="1605323449851">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="746" y="331" key="VCS.ChangeListViewerDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605323449851" />
     <state x="522" y="259" key="VCS.ChangeListViewerDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1603925913836" />
-    <state x="1413" y="395" key="Vcs.Push.Dialog.v2" timestamp="1605495049758">
+    <state x="1413" y="395" key="Vcs.Push.Dialog.v2" timestamp="1605497982577">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="1413" y="395" key="Vcs.Push.Dialog.v2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605495049758" />
+    <state x="1413" y="395" key="Vcs.Push.Dialog.v2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605497982577" />
     <state x="1380" y="123" width="1080" height="1140" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605323097039">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -368,7 +398,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/maml_vae_omniglot.py</url>
-          <line>77</line>
+          <line>76</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
