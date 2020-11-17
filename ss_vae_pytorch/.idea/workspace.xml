@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="44f05f4f-01b3-4f9a-9326-641e8bb4c362" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/databases/data_bases.py" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/databases/data_bases.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/maml_ss_vae_omniglot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/maml_ss_vae_omniglot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/ssvae.py" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/ssvae.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
