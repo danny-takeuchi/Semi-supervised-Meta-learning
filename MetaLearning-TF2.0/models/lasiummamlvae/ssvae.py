@@ -145,7 +145,7 @@ class SSVAE(keras.Model):
         log_prob = tf.nn.sigmoid_cross_entropy_with_logits(labels=x, logits=logits)
         return log_prob
 
-    def call(self, inputs, training=None, mask=None):
+    def call(self, inputs, subset_x, subset_y, training=None, mask=None):
         # z_mean, z_log_var = self.encoder(inputs)
         # z = self.sampler([z_mean, z_log_var])
         # reconstruction = self.decoder(z)
@@ -166,10 +166,9 @@ class SSVAE(keras.Model):
         y = tf.convert_to_tensor(inp)
 
         x = self.duplicate(inp, self.y_dim)
-        input = tf.concat
-        mu, var = self.encoder()  # x, y
+        mu, var = self.encoder(x, y)  # x, y
         z = self.sample_gaussian(mu, var)
-        decoder_out = self.decoder()  # z, y
+        decoder_out = self.decoder(z, y)  # z, y
 
         kl_y = self.kl_cat(y_prob, y_logprob, np.log(1.0/self.y_dim))
         kl_z = self.kl_normal(mu, var, self.z_prior_m, self.z_prior_v)         # z_prior_m, z_prior_v?
@@ -192,6 +191,9 @@ class SSVAE(keras.Model):
         kl_loss = kl_y + kl_z
         total_loss = nelbo
 
+        y_logits = self.classifier()
+
+
 
         return {
             "loss": total_loss,
@@ -211,9 +213,13 @@ class SSVAE(keras.Model):
             "kl_loss": self.kl_loss_metric.result()
         }
 
-    def train_step(self, data):
+    # TODO
+
+    def train_step(self, data_input):
+        data, subset_x, labelled_y = data_input
+
         with tf.GradientTape() as tape:
-            outputs = self.call(data)
+            outputs = self.call(data, subset_x, labelled_y)
 
         grads = tape.gradient(outputs['loss'], self.trainable_weights)
         self.optimizer.apply_gradients(zip(grads, self.trainable_weights))
@@ -236,11 +242,25 @@ class SSVAE(keras.Model):
         train_dataset = train_dataset.batch(128)
         return train_dataset
 
+    def get_dataset_with_labels(self, partition = 'labelled_subset'):
+        instances = self.database.get_all_instances(partition_name = partition)
+        labels = []
+        for path in instances
+
+        train_dataset = tf.data.Dataset.from_tensor_slices(instances).shuffle(len(instances))
+        train_dataset = train_dataset.map(self.parser.get_parse_fn())
+        train_dataset = train_dataset.batch(128)
+        return train_dataset, labels
+
+
     def get_train_dataset(self):
         return self.get_dataset(partition='train')
 
     def get_val_dataset(self):
         return self.get_dataset(partition='val')
+
+    def get_labelled_subset_dataset(self):
+        return self.get_dataset(partition = 'labelled_subset')
 
     def load_latest_checkpoint(self, epoch_to_load_from=None):
         latest_checkpoint = tf.train.latest_checkpoint(
@@ -268,6 +288,7 @@ class SSVAE(keras.Model):
 
         train_dataset = self.get_train_dataset()
         val_dataset = self.get_val_dataset()
+        subset_labelled_x, subset_labelled_y = self.get_labelled_subset_dataset()
 
         checkpoint_callback = CheckPointFreq(
             freq=checkpoint_freq,
@@ -302,8 +323,9 @@ class SSVAE(keras.Model):
         callbacks = [tensorboard_callback, checkpoint_callback]
 
         self.compile(optimizer=self.optimizer)
+        # TODO: test out self.fit
         self.fit(
-            train_dataset,
+            (train_dataset, subset_labelled_x, subset_labelled_y),
             epochs=epochs,
             callbacks=callbacks,
             validation_data=val_dataset,

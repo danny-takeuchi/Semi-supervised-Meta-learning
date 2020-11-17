@@ -20,9 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a8e0bd3-2d6b-483b-89a9-f1ca64a391f2" name="Default Changelist" comment="modified files of ss_vae">
-      <change beforePath="$PROJECT_DIR$/.idea/Semi-supervised-Meta-learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Semi-supervised-Meta-learning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss_vae_pytorch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ss_vae_pytorch/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss_vae_pytorch/codebase/models/nns/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ss_vae_pytorch/codebase/models/nns/v1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +112,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
   </component>
@@ -136,6 +135,7 @@
       <workItem from="1605395565769" duration="1113000" />
       <workItem from="1605473103662" duration="4163000" />
       <workItem from="1605497474787" duration="1135000" />
+      <workItem from="1605587347571" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="original pull">
       <created>1603925943507</created>
@@ -253,12 +253,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
@@ -282,10 +283,10 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="744" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1604183492104" />
-    <state x="476" y="170" key="CommitChangelistDialog2" timestamp="1605497901055">
+    <state x="476" y="170" key="CommitChangelistDialog2" timestamp="1605587358283">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="476" y="170" key="CommitChangelistDialog2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605497901055" />
+    <state x="476" y="170" key="CommitChangelistDialog2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605587358283" />
     <state x="333" y="136" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1603925943141" />
     <state x="256" y="146" key="DiffContextDialog" timestamp="1605144476703">
       <screen x="0" y="23" width="2560" height="1340" />

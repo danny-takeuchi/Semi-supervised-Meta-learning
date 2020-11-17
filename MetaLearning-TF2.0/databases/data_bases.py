@@ -6,7 +6,7 @@ from typing import Tuple, Callable, Dict
 
 import tensorflow as tf
 import numpy as np
-
+import random
 
 class Database(ABC):
     def __init__(
@@ -57,6 +57,14 @@ class Database(ABC):
             partitions = (self.train_folders, self.val_folders, self.test_folders)
         elif partition_name == 'train':
             partitions = (self.train_folders, )
+        elif partition_name == 'labelled_subset':
+            subset_folder_keys = list(self.train_folders.keys())
+            subset_folders = {}
+            rand = np.random.choice(len(subset_folder_keys), replace = False, size = len(subset_folder_keys) // 4)
+            for idx in rand:
+                key = subset_folder_keys[idx]
+                subset_folders[key] = self.train_folders[key].copy()
+            partitions = (subset_folders, )
         elif partition_name == 'test':
             partitions = (self.test_folders,)
         elif partition_name == 'val':

@@ -10,9 +10,9 @@ class Encoder(nn.Module):
     def __init__(self, z_dim, y_dim=0):
         super().__init__()
         self.z_dim = z_dim
-        self.y_dim = y_dim
+        self.y_dim = y_dim # 10 for mnist
         self.net = nn.Sequential(
-            nn.Linear(784 + y_dim, 300),
+            nn.Linear(784 + y_dim, 300), # 784 + 10
             nn.ELU(),
             nn.Linear(300, 300),
             nn.ELU(),

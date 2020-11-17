@@ -8,6 +8,7 @@ from models.lasiummamlvae.maml_vae import MAML_VAE
 # from models.lasiummamlvae.vae import VAE
 from models.lasiummamlvae.ssvae import SSVAE
 from networks.maml_umtra_networks import SimpleModel
+import copy
 
 
 
@@ -29,22 +30,23 @@ def get_encoder(latent_dim):
     x = layers.Conv2D(64, 3, activation=None, strides=1, padding="same", use_bias=False)(x)
     x = layers.BatchNormalization()(x)
     x = layers.ReLU()(x)
-    x = layers.Flatten()(x) # batch_size, 784
-    x = layers.concatenate([x, label_input], axis = -1), # (batch_size, 784 + 1623)
+    x = layers.Flatten()(x)
+    x = layers.Concatenate(axis = -1)([x, label_input]) # (batch_size, 784 + 1623)
 
     z_mean = layers.Dense(latent_dim, name="z_mean")(x)
     z_log_var = layers.Dense(latent_dim, name="z_log_var")(x)
 
-    encoder = keras.Model(encoder_inputs, [z_mean, z_log_var], name="encoder")
+    encoder = keras.Model([encoder_inputs, label_input], [z_mean, z_log_var], name="encoder")
 
     return encoder
+
 
 
 def get_decoder(latent_dim):
     latent_inputs = keras.Input(shape=(latent_dim,)) # (batch_size, latent_dim)
     label_input = keras.Input(shape = (1623, ))
-    latent_inputs = layers.concatenate([latent_inputs, label_input], axis = -1)
-    x = layers.Dense(7 * 7 * 64, activation="relu")(latent_inputs)
+    x = layers.Concatenate(axis = 1)([latent_inputs, label_input])
+    x = layers.Dense(7 * 7 * 64, activation="relu")(x)
     x = layers.Reshape((7, 7, 64))(x)
     x = layers.Conv2DTranspose(64, 3, activation=None, strides=2, padding="same", use_bias=False)(x)
     x = layers.BatchNormalization()(x)
@@ -63,7 +65,7 @@ def get_decoder(latent_dim):
     x = layers.ReLU()(x)
 
     decoder_outputs = layers.Conv2DTranspose(1, 3, activation="sigmoid", padding="same")(x)
-    decoder = keras.Model(latent_inputs, decoder_outputs, name="decoder")
+    decoder = keras.Model([latent_inputs, label_input], decoder_outputs, name="decoder")
     decoder.summary()
 
     return decoder
