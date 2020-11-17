@@ -10,7 +10,7 @@ import settings
 from databases import OmniglotDatabase
 
 import matplotlib.pyplot as plt
-
+import torch
 
 class CheckPointFreq(tf.keras.callbacks.ModelCheckpoint):
     def __init__(self, epochs, freq=1, *args, **kwargs):
@@ -90,6 +90,7 @@ class SSVAE(keras.Model):
         visualization_freq,
         learning_rate,
         classifier,
+        label_dim,
         **kwargs
     ):
         super(SSVAE, self).__init__(**kwargs)
@@ -104,10 +105,14 @@ class SSVAE(keras.Model):
         self.encoder = encoder
         self.decoder = decoder
         self.classifier = classifier
-        self.y_dim = 1623
+        self.y_dim = label_dim
+        self.label_dim = label_dim
         self.loss_metric = tf.keras.metrics.Mean()
         self.reconstruction_loss_metric = tf.keras.metrics.Mean()
+        self.kl_loss_z_metric = tf.keras.metrics.Mean()
+        self.kl_loss_y_metric = tf.keras.metrics.Mean()
         self.kl_loss_metric = tf.keras.metrics.Mean()
+        self.ce_loss_metric = tf.keras.metrics.Mean()
 
     def get_vae_name(self):
         return self.vae_name
@@ -123,8 +128,8 @@ class SSVAE(keras.Model):
     def decode(self, item):
         return self.decoder(item)
 
-    def duplicate(self, x, y_dim):
-        return tf.tile(x, tuple(x.shape.as_list()), multiples=y_dim)
+    # def duplicate(self, x, y_dim):
+    #     return tf.tile(x, tuple(x.shape.as_list()), multiples=y_dim)
 
     def sample_gaussian(self, m, v):
         eps = tf.random.normal(m)
@@ -136,8 +141,11 @@ class SSVAE(keras.Model):
         kl = tf.reduce_sum(element_wise, axis=-1)
         return kl
 
-    def kl_normal(self, qm, qv, pm, pv):
+    def kl_normal(self, qm, qv, pm = None, pv = None):
+        # if pm is None:
         element_wise = 0.5 * (tf.math.log(pv) - tf.math.log(qv) + qv / pv + tf.pow((qm - pm), 2) / pv - 1)
+        # else:
+        # element_wise = 0.5 * (-tf.math.log(qv) + qv + tf.square(qm) - 1)
         kl = tf.reduce_sum(element_wise, axis=-1)  # element_wise.sum(-1)
         return kl
 
@@ -145,7 +153,7 @@ class SSVAE(keras.Model):
         log_prob = tf.nn.sigmoid_cross_entropy_with_logits(labels=x, logits=logits)
         return log_prob
 
-    def call(self, inputs, subset_x, subset_y, training=None, mask=None):
+    def call(self, all_inputs, training=None, mask=None):
         # z_mean, z_log_var = self.encoder(inputs)
         # z = self.sampler([z_mean, z_log_var])
         # reconstruction = self.decoder(z)
@@ -157,48 +165,70 @@ class SSVAE(keras.Model):
         # kl_loss = tf.reduce_mean(kl_loss)
         # kl_loss *= -0.5
         # total_loss = reconstruction_loss + kl_loss # nelbo
+        inputs, labelled_dataset = all_inputs
         y_logits = self.classifier(inputs)
         y_logprob = tf.nn.log_softmax(y_logits, axis=1)
-        y_prob = tf.nn.softmax(y_logits, dim=1)
+        y_prob = tf.nn.softmax(y_logits, axis = 1)
+        # print(inputs.shape.as_list()[0], type(inputs.shape.as_list()[0]))
+        # print(type(inputs), inputs.shape.as_list())
+        # y = np.repeat(np.arange(self.y_dim), 128)
+        # inp = np.eye(self.y_dim)[y]
+        # y = tf.convert_to_tensor(inp)
+        # y = tf.cast(y, dtype = tf.int32)
+        # print(y.shape.as_list())
 
-        y = np.repeat(np.arange(self.y_dim), inputs.size(0))
-        inp = np.eye(self.y_dim)[y]
-        y = tf.convert_to_tensor(inp)
-
-        x = self.duplicate(inp, self.y_dim)
-        mu, var = self.encoder(x, y)  # x, y
-        z = self.sample_gaussian(mu, var)
-        decoder_out = self.decoder(z, y)  # z, y
-
+        # x = self.duplicate(inp, self.y_dim)
+        # mu, var = self.encoder(inputs, y)  # x, y
+        mu, var = self.encoder(inputs)
+        # z = self.sample_gaussian(mu, var)
+        z = self.sampler([mu, var])
+        # decoder_out = self.decoder(z, y)  # z, y
+        decoder_out = self.decoder(z)
         kl_y = self.kl_cat(y_prob, y_logprob, np.log(1.0/self.y_dim))
-        kl_z = self.kl_normal(mu, var, self.z_prior_m, self.z_prior_v)         # z_prior_m, z_prior_v?
-        rec = -1 * self.log_bernoulli_with_logits(x, decoder_out)
 
-        kl_z = tf.transpose(y_prob, (0, 1)) * kl_z.reshape(self.y_dim, -1)     # y_prob.transpose(0, 1) * kl_z.view(self.y_dim, -1)
-        kl_z = tf.reduce_sum(kl_z, axis=0)          # kl_z.sum(dim=0)
+        # kl_z = self.kl_normal(mu, var) # set prior_m = 0, and prior_v = 1
+        kl_z = 1 + var - tf.square(mu) - tf.exp(var)
+        kl_z = tf.reduce_mean(kl_z)
+        kl_z *= -0.5
 
-        rec = tf.transpose(y_prob, (0, 1)) * rec.reshape(self.y_dim, -1)
-        rec = tf.reduce_sum(rec, axis=0)
-
-        nelbo = kl_y + kl_z + rec
-        nelbo = tf.reduce_mean(nelbo)               # nelbo.mean()
+        rec = tf.reduce_mean(
+            keras.losses.binary_crossentropy(inputs, decoder_out)
+        )
+        rec *= np.prod(self.image_shape)
 
         kl_y = tf.reduce_mean(kl_y)
-        kl_z = tf.reduce_mean(kl_z)
-        rec = tf.reduce_mean(rec)
+
+        # kl_z = tf.transpose(y_prob, (0, 1)) * kl_z.reshape(self.y_dim, -1)     # y_prob.transpose(0, 1) * kl_z.view(self.y_dim, -1)
+        # kl_z = tf.reduce_sum(kl_z, axis=0)          # kl_z.sum(dim=0)
+
+        # rec = tf.transpose(y_prob, (0, 1)) * rec.reshape(self.y_dim, -1)
+        # rec = tf.reduce_sum(rec, axis=0)
+
+        nelbo = kl_y + kl_z + rec
+        # nelbo = tf.reduce_mean(nelbo)               # nelbo.mean()
+        #
+        # kl_y = tf.reduce_mean(kl_y)
+        # kl_z = tf.reduce_mean(kl_z)
+        # rec = tf.reduce_mean(rec)
 
         reconstruction_loss = rec
         kl_loss = kl_y + kl_z
-        total_loss = nelbo
 
-        y_logits = self.classifier()
-
+        subset_input, subset_label = labelled_dataset
+        y_logits_subset = self.classifier(subset_input)
+        ce_loss = tf.nn.softmax_cross_entropy_with_logits(logits = y_logits_subset,
+                                                          labels = tf.stop_gradient(subset_label))
+        ce_total_loss = tf.reduce_mean(ce_loss)
+        total_loss = nelbo + ce_total_loss
 
 
         return {
             "loss": total_loss,
             "reconstruction_loss": reconstruction_loss,
-            "kl_loss": kl_loss,
+            "kl_loss_z": kl_z,
+            "kl_loss_y" : kl_y,
+            "kl_loss" : kl_loss,
+            "ce_loss" : ce_total_loss
         }
 
     def test_step(self, data):
@@ -206,20 +236,25 @@ class SSVAE(keras.Model):
         self.loss_metric.update_state(outputs['loss'])
         self.reconstruction_loss_metric.update_state(outputs['reconstruction_loss'])
         self.kl_loss_metric.update_state(outputs['kl_loss'])
+        self.ce_loss_metric.update_state(outputs["ce_loss"])
+        self.kl_loss_z_metric.update_state(outputs['kl_loss_z'])
+        self.kl_loss_y_metric.update_state(outputs['kl_loss_y'])
 
         return {
             "loss": self.loss_metric.result(),
             "reconstruction_loss": self.reconstruction_loss_metric.result(),
-            "kl_loss": self.kl_loss_metric.result()
+            "ce_loss" : self.ce_loss_metric.result(),
+            "kl_loss_z": self.kl_loss_z_metric.result(),
+            "kl_loss_y": self.kl_loss_y_metric.result(),
         }
 
     # TODO
 
     def train_step(self, data_input):
-        data, subset_x, labelled_y = data_input
+        data, subset_dataset = data_input
 
         with tf.GradientTape() as tape:
-            outputs = self.call(data, subset_x, labelled_y)
+            outputs = self.call((data, subset_dataset))
 
         grads = tape.gradient(outputs['loss'], self.trainable_weights)
         self.optimizer.apply_gradients(zip(grads, self.trainable_weights))
@@ -227,11 +262,17 @@ class SSVAE(keras.Model):
         self.loss_metric.update_state(outputs['loss'])
         self.reconstruction_loss_metric.update_state(outputs['reconstruction_loss'])
         self.kl_loss_metric.update_state(outputs['kl_loss'])
+        self.ce_loss_metric.update_state(outputs["ce_loss"])
+        self.kl_loss_z_metric.update_state(outputs['kl_loss_z'])
+        self.kl_loss_y_metric.update_state(outputs['kl_loss_y'])
 
         return {
             "loss": self.loss_metric.result(),
             "reconstruction_loss": self.reconstruction_loss_metric.result(),
-            "kl_loss": self.kl_loss_metric.result()
+            "kl_loss": self.kl_loss_metric.result(),
+            "ce_loss" : self.ce_loss_metric.result(),
+            "kl_loss_z": self.kl_loss_z_metric.result(),
+            "kl_loss_y": self.kl_loss_y_metric.result()
         }
 
     def get_dataset(self, partition='train'):
@@ -242,15 +283,26 @@ class SSVAE(keras.Model):
         train_dataset = train_dataset.batch(128)
         return train_dataset
 
-    def get_dataset_with_labels(self, partition = 'labelled_subset'):
+    def get_dataset_with_labels(self, partition = 'train_labelled_subset'):
         instances = self.database.get_all_instances(partition_name = partition)
-        labels = []
-        for path in instances
+        random.shuffle(instances)
+        labels = np.zeros((len(instances), self.label_dim))
+        for i, path in enumerate(instances):
+            # image_name = path.split('/')[-1]
+            # label = image_name.split('_')[0]
+            label = np.random.randint(0, self.label_dim)
+            label = int(label) - 1
+            labels[i, label] = 1
 
-        train_dataset = tf.data.Dataset.from_tensor_slices(instances).shuffle(len(instances))
+        train_dataset = tf.data.Dataset.from_tensor_slices(instances)
         train_dataset = train_dataset.map(self.parser.get_parse_fn())
-        train_dataset = train_dataset.batch(128)
-        return train_dataset, labels
+        train_label = tf.data.Dataset.from_tensor_slices(labels)
+        train_ds = tf.data.Dataset.zip((train_dataset, train_label)).shuffle(len(instances))
+        # elements = []
+        # for element in train_ds:
+        #     elements.append(element)
+        train_ds = train_ds.batch(128)
+        return train_ds
 
 
     def get_train_dataset(self):
@@ -259,18 +311,22 @@ class SSVAE(keras.Model):
     def get_val_dataset(self):
         return self.get_dataset(partition='val')
 
-    def get_labelled_subset_dataset(self):
-        return self.get_dataset(partition = 'labelled_subset')
+    def get_train_labelled_subset_dataset(self):
+        return self.get_dataset_with_labels(partition = 'train_labelled_subset')
+
+    def get_val_labelled_subset_dataset(self):
+        return self.get_dataset_with_labels(partition = 'val_labelled_subset')
+
 
     def load_latest_checkpoint(self, epoch_to_load_from=None):
         latest_checkpoint = tf.train.latest_checkpoint(
             os.path.join(
                 settings.PROJECT_ROOT_ADDRESS,
                 'models',
-                'lasiummamlvae',
-                'vae',
+                'lasiummamlssvae',
+                'ssvae',
                 self.get_vae_name(),
-                'vae_checkpoints'
+                'ssvae_checkpoints'
             )
         )
 
@@ -288,18 +344,20 @@ class SSVAE(keras.Model):
 
         train_dataset = self.get_train_dataset()
         val_dataset = self.get_val_dataset()
-        subset_labelled_x, subset_labelled_y = self.get_labelled_subset_dataset()
-
+        labelled_train_dataset = self.get_train_labelled_subset_dataset()
+        labelled_val_dataset = self.get_val_labelled_subset_dataset()
+        train_ds = tf.data.Dataset.zip((train_dataset, labelled_train_dataset))
+        val_ds = tf.data.Dataset.zip((val_dataset, labelled_val_dataset))
         checkpoint_callback = CheckPointFreq(
             freq=checkpoint_freq,
             filepath=os.path.join(
                 settings.PROJECT_ROOT_ADDRESS,
                 'models',
-                'lasiummamlvae',
-                'vae',
+                'lasiummamlssvae',
+                'ssvae',
                 self.get_vae_name(),
-                'vae_checkpoints',
-                'vae_{epoch:02d}'
+                'ssvae_checkpoints',
+                'ssvae_{epoch:02d}'
             ),
             save_freq='epoch',
             save_weights_only=True,
@@ -312,10 +370,10 @@ class SSVAE(keras.Model):
             log_dir=os.path.join(
                 settings.PROJECT_ROOT_ADDRESS,
                 'models',
-                'lasiummamlvae',
-                'vae',
+                'lasiummamlssvae',
+                'ssvae',
                 self.get_vae_name(),
-                'vae_logs'
+                'ssvae_logs'
             ),
             visualization_freq=self.visualization_freq
         )
@@ -325,10 +383,10 @@ class SSVAE(keras.Model):
         self.compile(optimizer=self.optimizer)
         # TODO: test out self.fit
         self.fit(
-            (train_dataset, subset_labelled_x, subset_labelled_y),
+            train_ds,
             epochs=epochs,
             callbacks=callbacks,
-            validation_data=val_dataset,
+            validation_data= val_ds,
             initial_epoch=initial_epoch
         )
 

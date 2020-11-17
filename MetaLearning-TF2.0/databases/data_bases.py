@@ -57,33 +57,52 @@ class Database(ABC):
             partitions = (self.train_folders, self.val_folders, self.test_folders)
         elif partition_name == 'train':
             partitions = (self.train_folders, )
-        elif partition_name == 'labelled_subset':
+        elif partition_name == 'train_labelled_subset':
             subset_folder_keys = list(self.train_folders.keys())
             subset_folders = {}
-            rand = np.random.choice(len(subset_folder_keys), replace = False, size = len(subset_folder_keys) // 4)
+            rand = np.random.choice(len(subset_folder_keys), replace = True, size = len(subset_folder_keys))
+            instances = []
             for idx in rand:
                 key = subset_folder_keys[idx]
-                subset_folders[key] = self.train_folders[key].copy()
+                instances += self.train_folders[key]
             partitions = (subset_folders, )
         elif partition_name == 'test':
             partitions = (self.test_folders,)
         elif partition_name == 'val':
             partitions = (self.val_folders, )
+        elif partition_name == 'val_labelled_subset':
+            subset_folder_keys = list(self.val_folders.keys())
+            subset_folders = {}
+            rand = np.random.choice(len(subset_folder_keys), replace = True, size = len(subset_folder_keys))
+            instances = []
+            for idx in rand:
+                key = subset_folder_keys[idx]
+                instances += self.val_folders[key].copy()
+            partitions = (subset_folders, )
+        elif partition_name == 'test_labelled_subset':
+            subset_folder_keys = list(self.test_folders.keys())
+            subset_folders = {}
+            rand = np.random.choice(len(subset_folder_keys), replace = True, size = len(subset_folder_keys))
+            instances = []
+            for idx in rand:
+                key = subset_folder_keys[idx]
+                instances += self.test_folders[key]
+            partitions = (subset_folders, )
         else:
             raise Exception('The argument partition_name should be all, val, test or train.')
+        if 'labelled' not in partition_name:
+            instance_to_class = dict()
+            class_ids = dict()
+            class_id = 0
+            for partition in partitions:
+                for class_name, items in partition.items():
+                    if class_name not in class_ids:
+                        class_ids[class_name] = class_id
+                        class_id += 1
 
-        instance_to_class = dict()
-        class_ids = dict()
-        class_id = 0
-        for partition in partitions:
-            for class_name, items in partition.items():
-                if class_name not in class_ids:
-                    class_ids[class_name] = class_id
-                    class_id += 1
-
-                for item in items:
-                    instances.append(item)
-                    instance_to_class[item] = class_name
+                    for item in items:
+                        instances.append(item)
+                        instance_to_class[item] = class_name
 
         if with_classes:
             return instances, instance_to_class, class_ids

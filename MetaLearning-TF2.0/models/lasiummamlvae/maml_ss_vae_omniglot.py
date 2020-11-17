@@ -12,9 +12,9 @@ import copy
 
 
 
-def get_encoder(latent_dim):
+def get_encoder(latent_dim, label_dim):
     encoder_inputs = keras.Input(shape=(28, 28, 1))
-    label_input = keras.Input(shape = (1623, ))
+    # label_input = keras.Input(shape = (label_dim, ))
     x = layers.Conv2D(64, 3, activation=None, strides=2, padding="same", use_bias=False)(encoder_inputs)
     x = layers.BatchNormalization()(x)
     x = layers.ReLU()(x)
@@ -31,22 +31,23 @@ def get_encoder(latent_dim):
     x = layers.BatchNormalization()(x)
     x = layers.ReLU()(x)
     x = layers.Flatten()(x)
-    x = layers.Concatenate(axis = -1)([x, label_input]) # (batch_size, 784 + 1623)
+    # x = layers.Concatenate(axis = -1)([x, label_input]) # (batch_size, 784 + 1623)
 
     z_mean = layers.Dense(latent_dim, name="z_mean")(x)
     z_log_var = layers.Dense(latent_dim, name="z_log_var")(x)
 
-    encoder = keras.Model([encoder_inputs, label_input], [z_mean, z_log_var], name="encoder")
+    # encoder = keras.Model([encoder_inputs, label_input], [z_mean, z_log_var], name="encoder")
+    encoder = keras.Model(encoder_inputs, [z_mean, z_log_var], name="encoder")
 
     return encoder
 
 
 
-def get_decoder(latent_dim):
+def get_decoder(latent_dim, label_dim):
     latent_inputs = keras.Input(shape=(latent_dim,)) # (batch_size, latent_dim)
-    label_input = keras.Input(shape = (1623, ))
-    x = layers.Concatenate(axis = 1)([latent_inputs, label_input])
-    x = layers.Dense(7 * 7 * 64, activation="relu")(x)
+    label_input = keras.Input(shape = (label_dim, ))
+    # x = layers.Concatenate(axis = 1)([latent_inputs, label_input])
+    x = layers.Dense(7 * 7 * 64, activation="relu")(latent_inputs)
     x = layers.Reshape((7, 7, 64))(x)
     x = layers.Conv2DTranspose(64, 3, activation=None, strides=2, padding="same", use_bias=False)(x)
     x = layers.BatchNormalization()(x)
@@ -65,18 +66,40 @@ def get_decoder(latent_dim):
     x = layers.ReLU()(x)
 
     decoder_outputs = layers.Conv2DTranspose(1, 3, activation="sigmoid", padding="same")(x)
+    # x = layers.Dense(300, activation='relu')(x)
+    # x = layers.BatchNormalization()(x)
+    # x = layers.Dense(300, activation = 'relu')(x)
+    # x = layers.BatchNormalization()(x)
+    # decoder_outputs = layers.Dense(784)(x)
     decoder = keras.Model([latent_inputs, label_input], decoder_outputs, name="decoder")
     decoder.summary()
 
     return decoder
 
-def get_classifier(latent_dim):
-    label_dim = 1623
-    latent_inputs = keras.Input(shape=(latent_dim,)) # (batch_size, latent_dim)
-    x = layers.Dense(latent_dim, activation = 'relu')(latent_inputs)
-    x = layers.Dense(latent_dim, activation = 'relu')(x)
+def get_classifier(latent_dim, label_dim):
+    classifier_inputs = keras.Input(shape=(28, 28, 1))
+
+    x = layers.Conv2D(64, 3, activation=None, strides=2, padding="same", use_bias=False)(classifier_inputs)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+
+    x = layers.Conv2D(64, 3, activation=None, strides=2, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+
+    x = layers.Conv2D(64, 3, activation=None, strides=1, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+
+    x = layers.Conv2D(64, 3, activation=None, strides=1, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+    x = layers.Flatten()(x)
+    #
+    # x = layers.Dense(latent_dim, activation = 'relu')(x)
+    # x = layers.Dense(latent_dim, activation = 'relu')(x)
     output = layers.Dense(label_dim)(x)
-    classifier = keras.Model(latent_inputs, output, name="classifier")
+    classifier = keras.Model(classifier_inputs, output, name="classifier")
     classifier.summary()
     return classifier
 
@@ -87,9 +110,10 @@ if __name__ == '__main__':
     omniglot_database = OmniglotDatabase(random_seed=47, num_train_classes=1200, num_val_classes=100)
     shape = (28, 28, 1)
     latent_dim = 20
-    omniglot_encoder = get_encoder(latent_dim)
-    omniglot_decoder = get_decoder(latent_dim)
-    omniglot_classifier = get_classifier(latent_dim)
+    label_dim = 40
+    omniglot_encoder = get_encoder(latent_dim, label_dim)
+    omniglot_decoder = get_decoder(latent_dim, label_dim)
+    omniglot_classifier = get_classifier(latent_dim, label_dim)
     omniglot_parser = OmniglotParser(shape=shape)
 
     vae = SSVAE(
@@ -103,6 +127,7 @@ if __name__ == '__main__':
         visualization_freq=5,
         classifier = omniglot_classifier,
         learning_rate=0.001,
+        label_dim = label_dim
     )
     vae.perform_training(epochs=1000, checkpoint_freq=100)
     vae.load_latest_checkpoint()

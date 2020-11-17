@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21ce7852-c913-48c2-ba1a-0ba389e8b6be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ss_vae_pytorch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_vae_pytorch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ss_vae_pytorch/codebase/models/nns/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_vae_pytorch/codebase/models/nns/v1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +37,7 @@
       <recent name="$PROJECT_DIR$/models/lasiummamlvae" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.maml_vae_omniglot">
+  <component name="RunManager" selected="Python.maml_ss_vae_omniglot">
     <configuration name="maml_ss_vae_omniglot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MetaLearning-TF2.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,10 +82,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="ssvae" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MetaLearning-TF2.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models/lasiummamlvae" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/lasiummamlvae/ssvae.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.maml_vae_omniglot" />
         <item itemvalue="Python.maml_ss_vae_omniglot" />
+        <item itemvalue="Python.ssvae" />
+        <item itemvalue="Python.maml_vae_omniglot" />
       </list>
     </recent_temporary>
   </component>
@@ -110,46 +131,46 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="924" y="304" key="#xdebugger.evaluate" timestamp="1605581386437">
+    <state x="924" y="304" key="#xdebugger.evaluate" timestamp="1605590210259">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="924" y="304" key="#xdebugger.evaluate/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605581386437" />
+    <state x="924" y="304" key="#xdebugger.evaluate/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605590210259" />
     <state x="1364" y="293" key="CommitChangelistDialog2" timestamp="1605587336201">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="1364" y="293" key="CommitChangelistDialog2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605587336201" />
-    <state width="1238" height="470" key="GridCell.Tab.0.bottom" timestamp="1605582731974">
+    <state width="2518" height="382" key="GridCell.Tab.0.bottom" timestamp="1605600120606">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731974" />
-    <state width="1238" height="470" key="GridCell.Tab.0.center" timestamp="1605582731973">
+    <state width="2518" height="382" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605600120606" />
+    <state width="2518" height="382" key="GridCell.Tab.0.center" timestamp="1605600120605">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731973" />
-    <state width="1238" height="470" key="GridCell.Tab.0.left" timestamp="1605582731973">
+    <state width="2518" height="382" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605600120605" />
+    <state width="2518" height="382" key="GridCell.Tab.0.left" timestamp="1605600120605">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731973" />
-    <state width="1238" height="470" key="GridCell.Tab.0.right" timestamp="1605582731973">
+    <state width="2518" height="382" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605600120605" />
+    <state width="2518" height="382" key="GridCell.Tab.0.right" timestamp="1605600120605">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731973" />
-    <state width="1238" height="470" key="GridCell.Tab.1.bottom" timestamp="1605582731974">
+    <state width="2518" height="382" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605600120605" />
+    <state width="2518" height="470" key="GridCell.Tab.1.bottom" timestamp="1605590382468">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731974" />
-    <state width="1238" height="470" key="GridCell.Tab.1.center" timestamp="1605582731974">
+    <state width="2518" height="470" key="GridCell.Tab.1.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605590382468" />
+    <state width="2518" height="470" key="GridCell.Tab.1.center" timestamp="1605590382468">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731974" />
-    <state width="1238" height="470" key="GridCell.Tab.1.left" timestamp="1605582731974">
+    <state width="2518" height="470" key="GridCell.Tab.1.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605590382468" />
+    <state width="2518" height="470" key="GridCell.Tab.1.left" timestamp="1605590382468">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731974" />
-    <state width="1238" height="470" key="GridCell.Tab.1.right" timestamp="1605582731974">
+    <state width="2518" height="470" key="GridCell.Tab.1.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605590382468" />
+    <state width="2518" height="470" key="GridCell.Tab.1.right" timestamp="1605590382468">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605582731974" />
+    <state width="2518" height="470" key="GridCell.Tab.1.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605590382468" />
     <state x="789" y="332" key="SettingsEditor" timestamp="1605484465821">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -166,6 +187,10 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="275" y="600" key="git4idea.ui.GitStashDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605574961560" />
+    <state x="943" y="327" width="672" height="678" key="search.everywhere.popup" timestamp="1605590553889">
+      <screen x="0" y="23" width="2560" height="1340" />
+    </state>
+    <state x="943" y="327" width="672" height="678" key="search.everywhere.popup/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605590553889" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -176,23 +201,13 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/lasiummamlvae/maml_ss_vae_omniglot.py</url>
-          <line>90</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/lasiummamlvae/maml_ss_vae_omniglot.py</url>
-          <line>47</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/lasiummamlvae/vae.py</url>
           <line>124</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/lasiummamlvae/ssvae.py</url>
-          <line>220</line>
+          <line>255</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -210,11 +225,27 @@
           <line>173</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/lasiummamlvae/ssvae.py</url>
+          <line>302</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/lasiummamlvae/maml_ss_vae_omniglot.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/lasiummamlvae/ssvae.py</url>
+          <line>346</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_vae_omniglot.coverage" NAME="maml_vae_omniglot Coverage Results" MODIFIED="1605581196938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
-    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_ss_vae_omniglot.coverage" NAME="maml_ss_vae_omniglot Coverage Results" MODIFIED="1605578036287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
+    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$ssvae.coverage" NAME="ssvae Coverage Results" MODIFIED="1605599237499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
+    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_vae_omniglot.coverage" NAME="maml_vae_omniglot Coverage Results" MODIFIED="1605596769921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
+    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_ss_vae_omniglot.coverage" NAME="maml_ss_vae_omniglot Coverage Results" MODIFIED="1605600325558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
   </component>
 </project>

@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f05f4f-01b3-4f9a-9326-641e8bb4c362" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/databases/data_bases.py" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/databases/data_bases.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/maml_ss_vae_omniglot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/maml_ss_vae_omniglot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/ssvae.py" beforeDir="false" afterPath="$PROJECT_DIR$/../MetaLearning-TF2.0/models/lasiummamlvae/ssvae.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codebase/models/nns/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/models/nns/v1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +70,7 @@
       <updated>1605484969043</updated>
       <workItem from="1605484972489" duration="8382000" />
       <workItem from="1605497474467" duration="563000" />
-      <workItem from="1605574771430" duration="7048000" />
+      <workItem from="1605574771430" duration="15667000" />
     </task>
     <servers />
   </component>
@@ -80,42 +78,42 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="403" y="406" key="#xdebugger.evaluate" timestamp="1605493181482">
+    <state x="403" y="406" key="#xdebugger.evaluate" timestamp="1605595041792">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="403" y="406" key="#xdebugger.evaluate/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493181482" />
-    <state width="1238" height="470" key="GridCell.Tab.0.bottom" timestamp="1605493095018">
+    <state x="403" y="406" key="#xdebugger.evaluate/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605595041792" />
+    <state width="1238" height="470" key="GridCell.Tab.0.bottom" timestamp="1605596865963">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493095018" />
-    <state width="1238" height="470" key="GridCell.Tab.0.center" timestamp="1605493095018">
+    <state width="1238" height="470" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865963" />
+    <state width="1238" height="470" key="GridCell.Tab.0.center" timestamp="1605596865962">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493095018" />
-    <state width="1238" height="470" key="GridCell.Tab.0.left" timestamp="1605493095017">
+    <state width="1238" height="470" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865962" />
+    <state width="1238" height="470" key="GridCell.Tab.0.left" timestamp="1605596865962">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493095017" />
-    <state width="1238" height="470" key="GridCell.Tab.0.right" timestamp="1605493095018">
+    <state width="1238" height="470" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865962" />
+    <state width="1238" height="470" key="GridCell.Tab.0.right" timestamp="1605596865963">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493095018" />
-    <state width="1238" height="470" key="GridCell.Tab.1.bottom" timestamp="1605493096556">
+    <state width="1238" height="470" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865963" />
+    <state width="1238" height="470" key="GridCell.Tab.1.bottom" timestamp="1605596865966">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493096556" />
-    <state width="1238" height="470" key="GridCell.Tab.1.center" timestamp="1605493096556">
+    <state width="1238" height="470" key="GridCell.Tab.1.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865966" />
+    <state width="1238" height="470" key="GridCell.Tab.1.center" timestamp="1605596865965">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493096556" />
-    <state width="1238" height="470" key="GridCell.Tab.1.left" timestamp="1605493096555">
+    <state width="1238" height="470" key="GridCell.Tab.1.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865965" />
+    <state width="1238" height="470" key="GridCell.Tab.1.left" timestamp="1605596865964">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493096555" />
-    <state width="1238" height="470" key="GridCell.Tab.1.right" timestamp="1605493096556">
+    <state width="1238" height="470" key="GridCell.Tab.1.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865964" />
+    <state width="1238" height="470" key="GridCell.Tab.1.right" timestamp="1605596865966">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605493096556" />
+    <state width="1238" height="470" key="GridCell.Tab.1.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605596865966" />
     <state x="-1395" y="144" key="SettingsEditor" timestamp="1605485013684">
       <screen x="-1792" y="-43" width="1792" height="1097" />
     </state>
@@ -133,6 +131,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ss_vae_pytorch$run_ssvae.coverage" NAME="run_ssvae Coverage Results" MODIFIED="1605493094934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ss_vae_pytorch$run_ssvae.coverage" NAME="run_ssvae Coverage Results" MODIFIED="1605594289681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
