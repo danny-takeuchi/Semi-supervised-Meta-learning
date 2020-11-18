@@ -42,10 +42,10 @@ class VisualizationCallback(tf.keras.callbacks.TensorBoard):
                 z_mean, z_log_var, z = vae.encode(item)
                 new_item = vae.decode(z)
 
-                writer = self._get_writer(self._train_run_name)
-                with writer.as_default():
-                    tf.summary.image(name='x', data=item, step=epoch, max_outputs=5)
-                    tf.summary.image(name='x^', data=new_item, step=epoch, max_outputs=5)
+                # writer = self._get_writer(self._train_run_name)
+                # with writer.as_default():
+                #     tf.summary.image(name='x', data=item, step=epoch, max_outputs=5)
+                #     tf.summary.image(name='x^', data=new_item, step=epoch, max_outputs=5)
 
 
 class AudioCallback(tf.keras.callbacks.TensorBoard):

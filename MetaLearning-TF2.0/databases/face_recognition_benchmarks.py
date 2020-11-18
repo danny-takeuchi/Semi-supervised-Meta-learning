@@ -9,7 +9,7 @@ import tqdm
 import settings
 
 from .data_bases import Database
-
+import pathlib
 
 class CelebADatabase(Database):
     def get_train_val_test_partition(self) -> Dict:
@@ -241,7 +241,9 @@ class CelebADatabase(Database):
     def get_train_val_test_folders(self) -> Tuple[List[str], List[str], List[str]]:
         dataset_folders = list()
         for dataset_type in ('train', 'val', 'test'):
-            dataset_base_address = os.path.join(self.database_address, dataset_type)
+            # dataset_base_address = os.path.join(self.database_address, dataset_type)
+            base_dir = pathlib.Path.cwd().parent.parent
+            base_address = base_dir / 'data' / 'omniglot' / item
             folders = [
                 os.path.join(dataset_base_address, class_name) for class_name in os.listdir(dataset_base_address)
             ]

@@ -96,7 +96,7 @@ class MAML_VAE(ModelAgnosticMetaLearningModel):
             transforms = [1, 0, -tx, 0, 1, -ty, 0, 0]
             new_image = tfa.image.transform(new_image, transforms, 'NEAREST')
 
-            new_image = tf.image.random_crop(new_image, size=(64, 64, 3))
+            # new_image = tf.image.random_crop(new_image, size=(64, 64, 3))
             new_images.append(new_image)
 
         new_images = tf.stack(new_images, axis=0)

@@ -92,7 +92,7 @@ if __name__ == '__main__':
         visualization_freq=5,
         learning_rate=0.001,
     )
-    vae.perform_training(epochs=1000, checkpoint_freq=100)
+    vae.perform_training(epochs=2, checkpoint_freq=100)
     vae.load_latest_checkpoint()
     vae.visualize_meta_learning_task()
 
@@ -102,9 +102,10 @@ if __name__ == '__main__':
         database=omniglot_database,
         network_cls=SimpleModelProto,
         n=5,
-        k=1,
+        k_ml=1,
+        k_val = 5,
         k_val_ml=5,
-        k_val_train=None,
+        # k_val_train=None,
         k_val_val=15,
         k_val_test=15,
         k_test=1,
@@ -113,8 +114,8 @@ if __name__ == '__main__':
         meta_learning_rate=0.001,
         report_validation_frequency=200,
         log_train_images_after_iteration=200,
-        number_of_tasks_val=100,
-        number_of_tasks_test=1000,
+        # number_of_tasks_val=100,
+        # number_of_tasks_test=1000,
         experiment_name='proto_vae_omniglot_shift_0.4',
         val_seed=42
     )

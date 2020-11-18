@@ -12,6 +12,7 @@ class ProtoNetsVAE(PrototypicalNetworks):
         super(ProtoNetsVAE, self).__init__(*args, **kwargs)
         self.vae = vae
         self.latent_algorithm = latent_algorithm
+        self.k = 5
 
 #     def initialize_network(self):
 #         model = self.network_cls(num_classes=self.n)
@@ -158,7 +159,7 @@ class ProtoNetsVAE(PrototypicalNetworks):
         dataset = dataset.batch(self.n, drop_remainder=True)
 
         dataset = dataset.map(generate_new_samples_with_vae)
-        labels_dataset = self.make_labels_dataset(self.n, self.k, self.k_val_ml, one_hot_labels=True)
+        labels_dataset = self.data_loader.make_labels_dataset(self.n, self.k, self.k_val_ml, one_hot_labels=True)
 
         dataset = tf.data.Dataset.zip((dataset, labels_dataset))
         dataset = dataset.batch(self.meta_batch_size)

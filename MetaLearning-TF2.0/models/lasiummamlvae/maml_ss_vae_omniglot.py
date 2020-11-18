@@ -110,7 +110,7 @@ if __name__ == '__main__':
     omniglot_database = OmniglotDatabase(random_seed=47, num_train_classes=1200, num_val_classes=100)
     shape = (28, 28, 1)
     latent_dim = 20
-    label_dim = 40
+    label_dim = 1683
     omniglot_encoder = get_encoder(latent_dim, label_dim)
     omniglot_decoder = get_decoder(latent_dim, label_dim)
     omniglot_classifier = get_classifier(latent_dim, label_dim)
@@ -155,12 +155,12 @@ if __name__ == '__main__':
         log_train_images_after_iteration=200,
         num_tasks_val=100,
         clip_gradients=False,
-        experiment_name='omniglot_vae_0.5_shift',
+        experiment_name='omniglot_ssvae_0.5_shift',
         val_seed=42,
         val_test_batch_norm_momentum=0.0
     )
 
     maml_vae.visualize_meta_learning_task(shape, num_tasks_to_visualize=2)
 
-    maml_vae.train(iterations=1000)
+    maml_vae.train(iterations=14000)
     maml_vae.evaluate(50, seed=42, num_tasks=1000)

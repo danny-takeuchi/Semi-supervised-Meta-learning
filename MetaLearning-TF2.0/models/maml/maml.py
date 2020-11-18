@@ -233,8 +233,8 @@ class ModelAgnosticMetaLearningModel(BaseModel):
         for variable in self.model.trainable_variables:
             gradients.append(tf.zeros_like(variable))
 
-        # self.create_meta_model_deprecated(self.updated_models[0], self.model, gradients)
-        self.create_meta_model(self.updated_models[0], self.model, gradients)
+        self.create_meta_model_deprecated(self.updated_models[0], self.model, gradients)
+        # self.create_meta_model(self.updated_models[0], self.model, gradients)
 
         losses = list()
         for k in range(1, num_iterations + 1):
@@ -244,8 +244,8 @@ class ModelAgnosticMetaLearningModel(BaseModel):
                 loss = self.inner_loss(train_labels, logits)
                 losses.append(loss)
             gradients = train_tape.gradient(loss, self.updated_models[k - 1].meta_trainable_variables)
-            # self.create_meta_model_deprecated(self.updated_models[k], self.updated_models[k - 1], gradients)
-            self.create_meta_model(self.updated_models[k], self.updated_models[k - 1], gradients)
+            self.create_meta_model_deprecated(self.updated_models[k], self.updated_models[k - 1], gradients)
+            # self.create_meta_model(self.updated_models[k], self.updated_models[k - 1], gradients)
 
         return self.updated_models[-1], losses
 
@@ -288,7 +288,8 @@ class ModelAgnosticMetaLearningModel(BaseModel):
         gradients = list()
         for variable in self.model.trainable_variables:
             gradients.append(tf.zeros_like(variable))
-        self.create_meta_model(self.eval_model, self.model, gradients, assign=True)
+        # self.create_meta_model(self.eval_model, self.model, gradients, assign=True)
+        self.create_meta_model_deprecated(self.eval_model, self.eval_model, gradients, assign = True)
 
     @tf.function
     def _train_model_for_eval(self, train_ds, train_labels):
@@ -299,7 +300,9 @@ class ModelAgnosticMetaLearningModel(BaseModel):
             if settings.DEBUG:
                 tf.print(loss)
         gradients = train_tape.gradient(loss, self.eval_model.meta_trainable_variables)
-        self.create_meta_model(self.eval_model, self.eval_model, gradients, assign=True)
+        # self.create_meta_model(self.eval_model, self.eval_model, gradients, assign=True)
+        self.create_meta_model_deprecated(self.eval_model, self.eval_model, gradients, assign=True)
+
 
     @tf.function
     def _evaluate_model_for_eval(self, val_ds, val_labels, training):
