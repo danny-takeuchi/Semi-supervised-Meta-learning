@@ -20,8 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a8e0bd3-2d6b-483b-89a9-f1ca64a391f2" name="Default Changelist" comment="modified files of ss_vae">
-      <change beforePath="$PROJECT_DIR$/ss_vae_pytorch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ss_vae_pytorch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ss_vae_pytorch/codebase/models/nns/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ss_vae_pytorch/codebase/models/nns/v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Semi-supervised-Meta-learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Semi-supervised-Meta-learning.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -83,7 +84,29 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.maml_ss_vae_omniglot">
+    <configuration name="maml_ss_vae_omniglot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Semi-supervised-Meta-learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae/maml_ss_vae_omniglot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="maml_vae_omniglot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Semi-supervised-Meta-learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,6 +131,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.maml_ss_vae_omniglot" />
         <item itemvalue="Python.maml_vae_omniglot" />
       </list>
     </recent_temporary>
@@ -136,6 +160,7 @@
       <workItem from="1605473103662" duration="4163000" />
       <workItem from="1605497474787" duration="1135000" />
       <workItem from="1605587347571" duration="15000" />
+      <workItem from="1605653186639" duration="4957000" />
     </task>
     <task id="LOCAL-00001" summary="original pull">
       <created>1603925943507</created>
@@ -271,10 +296,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="modified files of ss_vae" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="880" y="358" key="#Deployment" timestamp="1604891999106">
+    <state x="880" y="358" key="#Deployment" timestamp="1605662090530">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="880" y="358" key="#Deployment/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1604891999106" />
+    <state x="880" y="358" key="#Deployment/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605662090530" />
     <state x="880" y="358" key="#Notifications" timestamp="1605140624135">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -292,22 +317,22 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="256" y="146" key="DiffContextDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605144476703" />
-    <state width="2518" height="470" key="GridCell.Tab.0.bottom" timestamp="1605483929597">
+    <state width="1571" height="382" key="GridCell.Tab.0.bottom" timestamp="1605736222466">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="2518" height="470" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605483929597" />
-    <state width="2518" height="470" key="GridCell.Tab.0.center" timestamp="1605483929596">
+    <state width="1571" height="382" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605736222466" />
+    <state width="1571" height="382" key="GridCell.Tab.0.center" timestamp="1605736222465">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="2518" height="470" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605483929596" />
-    <state width="2518" height="470" key="GridCell.Tab.0.left" timestamp="1605483929596">
+    <state width="1571" height="382" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605736222465" />
+    <state width="1571" height="382" key="GridCell.Tab.0.left" timestamp="1605736222465">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="2518" height="470" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605483929596" />
-    <state width="2518" height="470" key="GridCell.Tab.0.right" timestamp="1605483929597">
+    <state width="1571" height="382" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605736222465" />
+    <state width="1571" height="382" key="GridCell.Tab.0.right" timestamp="1605736222465">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="2518" height="470" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605483929597" />
+    <state width="1571" height="382" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605736222465" />
     <state width="2518" height="470" key="GridCell.Tab.1.bottom" timestamp="1605483929598">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -332,10 +357,10 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="635" y="287" key="RollbackChangesDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605144614441" />
-    <state x="789" y="332" width="1471" height="765" key="SettingsEditor" timestamp="1605497660421">
+    <state x="789" y="332" width="1471" height="765" key="SettingsEditor" timestamp="1605662093849">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="789" y="332" width="1471" height="765" key="SettingsEditor/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605497660421" />
+    <state x="789" y="332" width="1471" height="765" key="SettingsEditor/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605662093849" />
     <state x="746" y="331" key="VCS.ChangeListViewerDialog" timestamp="1605323449851">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -360,14 +385,14 @@
     <state x="970" y="593" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605322500252" />
     <state x="647" y="391" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1707.920@0.0.1707.920" timestamp="1605503496914" />
     <state x="679" y="460" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1028@0.23.1792.1028" timestamp="1603926003974" />
-    <state x="1042" y="421" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1604180432250">
+    <state x="1042" y="421" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1605662041681">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="1042" y="421" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1604180432250" />
-    <state x="1650" y="432" width="593" height="525" key="ftp.server.browser" timestamp="1604180494801">
+    <state x="1042" y="421" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605662041681" />
+    <state x="1650" y="432" width="593" height="525" key="ftp.server.browser" timestamp="1605662089258">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="1650" y="432" width="593" height="525" key="ftp.server.browser/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1604180494801" />
+    <state x="1650" y="432" width="593" height="525" key="ftp.server.browser/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605662089258" />
     <state x="905" y="491" key="git4idea.merge.GitMergeDialog" timestamp="1605140507640">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -408,5 +433,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Semi_supervised_Meta_learning$maml_ss_vae_omniglot.coverage" NAME="maml_ss_vae_omniglot Coverage Results" MODIFIED="1605662566050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MetaLearning-TF2.0/models/lasiummamlvae" />
   </component>
 </project>
