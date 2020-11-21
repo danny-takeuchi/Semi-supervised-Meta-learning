@@ -105,14 +105,14 @@ if __name__ == '__main__':
         latent_algorithm='p1',
         network_cls=SimpleModel,
         n=5,
-        k_ml=10,
-        k_val_ml=10,
-        k_val=10,
-        k_val_val=10,
-        k_test=10,
-        k_val_test=10,
+        k_ml=15,
+        k_val_ml=15,
+        k_val=15,
+        k_val_val=15,
+        k_test=15,
+        k_val_test=15,
         meta_batch_size=4,
-        num_steps_ml=1,
+        num_steps_ml=5,
         lr_inner_ml=0.4,
         num_steps_validation=50,
         save_after_iterations=1000,
@@ -120,13 +120,8 @@ if __name__ == '__main__':
         report_validation_frequency=200,
         log_train_images_after_iteration=200,
         num_tasks_val=500,
-<<<<<<< HEAD
         clip_gradients=False,
-        experiment_name='omniglot_vae_k=1_all_k', # 'omniglot_vae_0.5_shift_run2',
-=======
-        clip_gradients=True,
-        experiment_name='omniglot_ssvae_k=1_all_k',
->>>>>>> b549d6bb67c87d9d07b1d4519d447becaa4e265a
+        experiment_name='omniglot_vae_k=15_all_k_v4', # 'omniglot_vae_0.5_shift_run2',
         val_seed=42,
         val_test_batch_norm_momentum=0.0
     )
