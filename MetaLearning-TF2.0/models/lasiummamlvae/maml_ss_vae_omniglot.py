@@ -132,7 +132,7 @@ if __name__ == '__main__':
         learning_rate=0.001,
         label_dim = label_dim
     )
-    vae.perform_training(epochs=1000, checkpoint_freq=100)
+    vae.perform_training(epochs=500, checkpoint_freq=100)
     vae.load_latest_checkpoint()
     # vae.visualize_meta_learning_task()
 
@@ -142,14 +142,14 @@ if __name__ == '__main__':
         latent_algorithm='p1',
         network_cls=SimpleModel,
         n=5,
-        k_ml=1,
-        k_val_ml=5,
-        k_val=1,
-        k_val_val=15,
-        k_test=1,
-        k_val_test=15,
+        k_ml=10, #1
+        k_val_ml=10,
+        k_val=10, #1
+        k_val_val=10,
+        k_test=10,
+        k_val_test=10,
         meta_batch_size=4,
-        num_steps_ml=5,
+        num_steps_ml=1,
         lr_inner_ml=0.4,
         num_steps_validation=5,
         save_after_iterations=1000,
@@ -158,12 +158,12 @@ if __name__ == '__main__':
         log_train_images_after_iteration=200,
         num_tasks_val=100,
         clip_gradients=False,
-        experiment_name='omniglot_ssvae_0.5_shift',
+        experiment_name='omniglot_ssvae_k=1_all_k',
         val_seed=42,
         val_test_batch_norm_momentum=0.0
     )
 
     maml_vae.visualize_meta_learning_task(shape, num_tasks_to_visualize=2)
 
-    maml_vae.train(iterations=14000)
+    maml_vae.train(iterations=10000)
     maml_vae.evaluate(50, seed=42, num_tasks=1000)
