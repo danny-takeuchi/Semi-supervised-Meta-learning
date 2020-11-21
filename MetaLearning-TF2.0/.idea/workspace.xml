@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21ce7852-c913-48c2-ba1a-0ba389e8b6be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/Semi-supervised-Meta-learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/Semi-supervised-Meta-learning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="21ce7852-c913-48c2-ba1a-0ba389e8b6be" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +32,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/models/lasiummamlvae" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/models/lasiummamlvae/vae.py" />
@@ -178,7 +175,8 @@
       <updated>1605484406659</updated>
       <workItem from="1605484417034" duration="10365000" />
       <workItem from="1605497472901" duration="562000" />
-      <workItem from="1605662620471" duration="18754000" />
+      <workItem from="1605662620471" duration="29973000" />
+      <workItem from="1605825029399" duration="13557000" />
     </task>
     <servers />
   </component>
@@ -186,10 +184,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="880" y="358" key="#Deployment" timestamp="1605732798001">
+    <state x="880" y="358" key="#Deployment" timestamp="1605826897793">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="880" y="358" key="#Deployment/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605732798001" />
+    <state x="880" y="358" key="#Deployment/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605826897793" />
     <state x="924" y="304" key="#xdebugger.evaluate" timestamp="1605590210259">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -202,58 +200,82 @@
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state x="35" y="27" width="2521" height="1332" maximized="true" key="DiffContextDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605688407472" />
-    <state width="1750" height="382" key="GridCell.Tab.0.bottom" timestamp="1605738781519">
-      <screen x="0" y="23" width="1792" height="1036" />
+    <state width="1238" height="446" key="GridCell.Tab.0.bottom" timestamp="1605870011533">
+      <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state width="2560" height="1290" key="GridCell.Tab.0.bottom/-1792.-43.1792.1037/0.23.2560.1417@0.23.2560.1417" timestamp="1605700698611" />
-    <state width="2518" height="382" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605732828519" />
-    <state width="1238" height="382" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605689312595" />
-    <state width="1750" height="382" key="GridCell.Tab.0.bottom/0.23.1792.1036@0.23.1792.1036" timestamp="1605738781519" />
-    <state width="1750" height="382" key="GridCell.Tab.0.center" timestamp="1605738781518">
-      <screen x="0" y="23" width="1792" height="1036" />
+    <state width="1521" height="404" key="GridCell.Tab.0.bottom/-1792.-43.1792.1043/0.23.2560.1417@0.23.2560.1417" timestamp="1605768312537" />
+    <state width="1521" height="404" key="GridCell.Tab.0.bottom/-1792.-43.1792.1044/0.23.2560.1417@0.23.2560.1417" timestamp="1605768677880" />
+    <state width="1238" height="446" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605870011533" />
+    <state width="1521" height="523" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605753830492" />
+    <state width="1521" height="523" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1343@0.23.2560.1343" timestamp="1605756041895" />
+    <state width="1521" height="447" key="GridCell.Tab.0.bottom/-1792.-43.1792.1097/0.23.2560.1346@0.23.2560.1346" timestamp="1605783409069" />
+    <state width="1750" height="382" key="GridCell.Tab.0.bottom/0.23.1792.1036@0.23.1792.1036" timestamp="1605739318534" />
+    <state width="1238" height="446" key="GridCell.Tab.0.center" timestamp="1605870011533">
+      <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state width="2560" height="1290" key="GridCell.Tab.0.center/-1792.-43.1792.1037/0.23.2560.1417@0.23.2560.1417" timestamp="1605700698611" />
-    <state width="2518" height="382" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605732828519" />
-    <state width="1238" height="382" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605689312594" />
-    <state width="1750" height="382" key="GridCell.Tab.0.center/0.23.1792.1036@0.23.1792.1036" timestamp="1605738781518" />
-    <state width="1750" height="382" key="GridCell.Tab.0.left" timestamp="1605738781518">
-      <screen x="0" y="23" width="1792" height="1036" />
+    <state width="1521" height="404" key="GridCell.Tab.0.center/-1792.-43.1792.1043/0.23.2560.1417@0.23.2560.1417" timestamp="1605768312536" />
+    <state width="1521" height="404" key="GridCell.Tab.0.center/-1792.-43.1792.1044/0.23.2560.1417@0.23.2560.1417" timestamp="1605768677879" />
+    <state width="1238" height="446" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605870011533" />
+    <state width="1521" height="523" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605753830491" />
+    <state width="1521" height="523" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1343@0.23.2560.1343" timestamp="1605756041895" />
+    <state width="1521" height="447" key="GridCell.Tab.0.center/-1792.-43.1792.1097/0.23.2560.1346@0.23.2560.1346" timestamp="1605783409068" />
+    <state width="1750" height="382" key="GridCell.Tab.0.center/0.23.1792.1036@0.23.1792.1036" timestamp="1605739318533" />
+    <state width="1238" height="446" key="GridCell.Tab.0.left" timestamp="1605870011533">
+      <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state width="2560" height="1290" key="GridCell.Tab.0.left/-1792.-43.1792.1037/0.23.2560.1417@0.23.2560.1417" timestamp="1605700698610" />
-    <state width="2518" height="382" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605732828518" />
-    <state width="1238" height="382" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605689312594" />
-    <state width="1750" height="382" key="GridCell.Tab.0.left/0.23.1792.1036@0.23.1792.1036" timestamp="1605738781518" />
-    <state width="1750" height="382" key="GridCell.Tab.0.right" timestamp="1605738781519">
-      <screen x="0" y="23" width="1792" height="1036" />
+    <state width="1521" height="404" key="GridCell.Tab.0.left/-1792.-43.1792.1043/0.23.2560.1417@0.23.2560.1417" timestamp="1605768312536" />
+    <state width="1521" height="404" key="GridCell.Tab.0.left/-1792.-43.1792.1044/0.23.2560.1417@0.23.2560.1417" timestamp="1605768677878" />
+    <state width="1238" height="446" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605870011533" />
+    <state width="1521" height="523" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605753830491" />
+    <state width="1521" height="523" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1343@0.23.2560.1343" timestamp="1605756041895" />
+    <state width="1521" height="447" key="GridCell.Tab.0.left/-1792.-43.1792.1097/0.23.2560.1346@0.23.2560.1346" timestamp="1605783409068" />
+    <state width="1750" height="382" key="GridCell.Tab.0.left/0.23.1792.1036@0.23.1792.1036" timestamp="1605739318533" />
+    <state width="1238" height="446" key="GridCell.Tab.0.right" timestamp="1605870011533">
+      <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state width="2560" height="1290" key="GridCell.Tab.0.right/-1792.-43.1792.1037/0.23.2560.1417@0.23.2560.1417" timestamp="1605700698611" />
-    <state width="2518" height="382" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605732828519" />
-    <state width="1238" height="382" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605689312595" />
-    <state width="1750" height="382" key="GridCell.Tab.0.right/0.23.1792.1036@0.23.1792.1036" timestamp="1605738781519" />
-    <state width="1238" height="470" key="GridCell.Tab.1.bottom" timestamp="1605691729404">
+    <state width="1521" height="404" key="GridCell.Tab.0.right/-1792.-43.1792.1043/0.23.2560.1417@0.23.2560.1417" timestamp="1605768312537" />
+    <state width="1521" height="404" key="GridCell.Tab.0.right/-1792.-43.1792.1044/0.23.2560.1417@0.23.2560.1417" timestamp="1605768677879" />
+    <state width="1238" height="446" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605870011533" />
+    <state width="1521" height="523" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1342@0.23.2560.1342" timestamp="1605753830491" />
+    <state width="1521" height="523" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1343@0.23.2560.1343" timestamp="1605756041895" />
+    <state width="1521" height="447" key="GridCell.Tab.0.right/-1792.-43.1792.1097/0.23.2560.1346@0.23.2560.1346" timestamp="1605783409068" />
+    <state width="1750" height="382" key="GridCell.Tab.0.right/0.23.1792.1036@0.23.1792.1036" timestamp="1605739318533" />
+    <state width="1238" height="470" key="GridCell.Tab.1.bottom" timestamp="1605783420354">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605691729404" />
-    <state width="1238" height="470" key="GridCell.Tab.1.center" timestamp="1605691729403">
+    <state width="1238" height="470" key="GridCell.Tab.1.bottom/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605783420354" />
+    <state width="1238" height="470" key="GridCell.Tab.1.center" timestamp="1605783420353">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605691729403" />
-    <state width="1238" height="470" key="GridCell.Tab.1.left" timestamp="1605691729403">
+    <state width="1238" height="470" key="GridCell.Tab.1.center/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605783420353" />
+    <state width="1238" height="470" key="GridCell.Tab.1.left" timestamp="1605783420353">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605691729403" />
-    <state width="1238" height="470" key="GridCell.Tab.1.right" timestamp="1605691729403">
+    <state width="1238" height="470" key="GridCell.Tab.1.left/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605783420353" />
+    <state width="1238" height="470" key="GridCell.Tab.1.right" timestamp="1605783420353">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state width="1238" height="470" key="GridCell.Tab.1.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605691729403" />
-    <state x="789" y="332" key="SettingsEditor" timestamp="1605732807083">
+    <state width="1238" height="470" key="GridCell.Tab.1.right/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605783420353" />
+    <state x="789" y="332" key="SettingsEditor" timestamp="1605826900799">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
-    <state x="789" y="332" key="SettingsEditor/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605732807083" />
+    <state x="789" y="332" key="SettingsEditor/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605826900799" />
     <state width="640" height="670" key="XDebugger.FullValuePopup" timestamp="1605578754926">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
     <state width="640" height="670" key="XDebugger.FullValuePopup/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605578754926" />
+    <state x="1178" y="214" width="2245" height="1140" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605912943417">
+      <screen x="0" y="23" width="2560" height="1340" />
+    </state>
+    <state x="1178" y="214" width="2245" height="1140" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605912943417" />
+    <state x="1471" y="525" key="com.intellij.ide.util.TipDialog" timestamp="1605825025485">
+      <screen x="0" y="23" width="2560" height="1340" />
+    </state>
+    <state x="1471" y="525" key="com.intellij.ide.util.TipDialog/-1792.-43.1792.1097/0.23.2560.1340@0.23.2560.1340" timestamp="1605825025485" />
     <state x="1042" y="421" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1605662658790">
       <screen x="0" y="23" width="2560" height="1340" />
     </state>
@@ -330,7 +352,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/lasiummamlvae/maml_vae_omniglot.py</url>
-          <line>129</line>
+          <line>130</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
@@ -341,7 +363,7 @@
     <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$ssvae.coverage" NAME="ssvae Coverage Results" MODIFIED="1605599237499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
     <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$protonets_vae_omniglot.coverage" NAME="protonets_vae_omniglot Coverage Results" MODIFIED="1605689376340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiumprotonetsvae" />
     <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_omniglot.coverage" NAME="maml_omniglot Coverage Results" MODIFIED="1605691105507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/maml" />
-    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_vae_omniglot.coverage" NAME="maml_vae_omniglot Coverage Results" MODIFIED="1605732848200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
-    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_ss_vae_omniglot.coverage" NAME="maml_ss_vae_omniglot Coverage Results" MODIFIED="1605700732294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
+    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_vae_omniglot.coverage" NAME="maml_vae_omniglot Coverage Results" MODIFIED="1605870011526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
+    <SUITE FILE_PATH="coverage/MetaLearning_TF2_0$maml_ss_vae_omniglot.coverage" NAME="maml_ss_vae_omniglot Coverage Results" MODIFIED="1605851721464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models/lasiummamlvae" />
   </component>
 </project>

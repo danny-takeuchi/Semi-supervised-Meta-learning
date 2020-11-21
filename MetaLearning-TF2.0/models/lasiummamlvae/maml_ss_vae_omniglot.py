@@ -134,7 +134,7 @@ if __name__ == '__main__':
     )
     vae.perform_training(epochs=500, checkpoint_freq=100)
     vae.load_latest_checkpoint()
-    # vae.visualize_meta_learning_task()
+    vae.visualize_meta_learning_task()
 
     maml_vae = MAML_VAE(
         vae=vae,
@@ -142,22 +142,33 @@ if __name__ == '__main__':
         latent_algorithm='p1',
         network_cls=SimpleModel,
         n=5,
+<<<<<<< HEAD
         k_ml=10, #1
         k_val_ml=10,
         k_val=10, #1
+=======
+        k_ml=10,
+        k_val_ml=10,
+        k_val=10,
+>>>>>>> b549d6bb67c87d9d07b1d4519d447becaa4e265a
         k_val_val=10,
         k_test=10,
         k_val_test=10,
         meta_batch_size=4,
         num_steps_ml=1,
         lr_inner_ml=0.4,
-        num_steps_validation=5,
+        num_steps_validation=50,
         save_after_iterations=1000,
         meta_learning_rate=0.001,
         report_validation_frequency=200,
         log_train_images_after_iteration=200,
+<<<<<<< HEAD
         num_tasks_val=100,
         clip_gradients=False,
+=======
+        num_tasks_val=500,
+        clip_gradients=True,
+>>>>>>> b549d6bb67c87d9d07b1d4519d447becaa4e265a
         experiment_name='omniglot_ssvae_k=1_all_k',
         val_seed=42,
         val_test_batch_norm_momentum=0.0
@@ -166,4 +177,8 @@ if __name__ == '__main__':
     maml_vae.visualize_meta_learning_task(shape, num_tasks_to_visualize=2)
 
     maml_vae.train(iterations=10000)
+<<<<<<< HEAD
     maml_vae.evaluate(50, seed=42, num_tasks=1000)
+=======
+    maml_vae.evaluate(500, seed=42, num_tasks=1000)
+>>>>>>> b549d6bb67c87d9d07b1d4519d447becaa4e265a

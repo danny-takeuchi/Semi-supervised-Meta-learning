@@ -80,6 +80,8 @@ if __name__ == '__main__':
     omniglot_decoder = get_decoder(latent_dim)
     omniglot_parser = OmniglotParser(shape=shape)
 
+    print(os.path.dirname(sys.argv[0]))
+
     vae = VAE(
         'omniglot',
         image_shape=shape,
@@ -102,7 +104,6 @@ if __name__ == '__main__':
         database=omniglot_database,
         latent_algorithm='p1',
         network_cls=SimpleModel,
-        # network_cls = simple_model,
         n=5,
         k_ml=10,
         k_val_ml=10,
@@ -119,8 +120,13 @@ if __name__ == '__main__':
         report_validation_frequency=200,
         log_train_images_after_iteration=200,
         num_tasks_val=500,
+<<<<<<< HEAD
         clip_gradients=False,
         experiment_name='omniglot_vae_k=1_all_k', # 'omniglot_vae_0.5_shift_run2',
+=======
+        clip_gradients=True,
+        experiment_name='omniglot_ssvae_k=1_all_k',
+>>>>>>> b549d6bb67c87d9d07b1d4519d447becaa4e265a
         val_seed=42,
         val_test_batch_norm_momentum=0.0
     )
@@ -128,4 +134,4 @@ if __name__ == '__main__':
     # maml_vae.visualize_meta_learning_task(shape, num_tasks_to_visualize=2)
 
     maml_vae.train(iterations=10000)
-    maml_vae.evaluate(50, seed=42, num_tasks=1000)
+    maml_vae.evaluate(500, seed=42, num_tasks=1000)
